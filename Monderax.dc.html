@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-b2e08125-3f0f-46eb-b819-c107c18a40c2/styles.css">
+<script src="_ds/industry-b2e08125-3f0f-46eb-b819-c107c18a40c2/_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); text-wrap: pretty; }
+  a { color: var(--color-accent-700); text-decoration: none; }
+  a:hover { color: var(--color-accent-800); }
+  .nav a, .btn { white-space: nowrap; }
+  .nav { flex-wrap: nowrap; }
+  @media (max-width: 1080px) { .nav { grid-template-columns: auto 1fr auto !important; } .nav > div:first-child { gap: 14px !important; font-size: 13px; } }
+  @media (max-width: 720px) { .nav a:not(.btn):not(.nav-brand) { font-size: 13px; } }
+  .nav a.nav-brand { display: inline-block; }
+  html { scroll-behavior: smooth; }
+</style>
+</helmet>
+
+<sc-if value="{{ teaser }}" hint-placeholder-val="{{ true }}">
+  <div style="background: var(--color-accent-900); color: var(--color-bg);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: baseline; font-size: 13px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase;">
+      <span>Unannounced · Coming {{ launchDateText }}</span>
+      <span style="color: color-mix(in srgb, #f2f2f3 72%, transparent);">{{ runText }}</span>
+    </div>
+  </div>
+</sc-if>
+
+<nav class="nav" style="padding-inline: max(24px, calc((100% - 1240px) / 2 + 24px)); position: sticky; top: 0; z-index: 20; background: var(--color-bg); display: grid; grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr); align-items: center; gap: 20px;">
+  <div style="display: flex; align-items: center; gap: 20px; white-space: nowrap;">
+    <a href="#top" onClick="{{ goConfigure }}" aria-current="{{ curConfigure }}">Configurator</a>
+    <a href="#top" onClick="{{ goMetal }}" aria-current="{{ curMetal }}">Metal</a>
+    <a href="#top" onClick="{{ goModels }}" aria-current="{{ curModels }}">Models</a>
+    <a href="#top" onClick="{{ goWorkloads }}" aria-current="{{ curWorkloads }}">Workloads</a>
+    <a href="#top" onClick="{{ goSupport }}" aria-current="{{ curSupport }}">Support</a>
+  </div>
+  <a href="#top" onClick="{{ goHome }}" class="nav-brand" style="justify-self: center; display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; letter-spacing: 0.2em; text-transform: uppercase;"><span style="font-family: var(--font-heading); font-weight: 600; font-size: 22px; line-height: 1; text-transform: uppercase; letter-spacing: 0; display: inline-flex; align-items: center; gap: 0.08em; text-box: trim-both cap alphabetic;"><span style="display: block; text-box: trim-both cap alphabetic;">M</span><img src="assets/monderax-mark-lockup.png" alt="o" style="display: block; align-self: center; height: 0.72em; width: auto; flex: 0 0 auto;"><span style="display: block; text-box: trim-both cap alphabetic;">N</span><span style="display: block; text-box: trim-both cap alphabetic;">D</span><span style="display: block; text-box: trim-both cap alphabetic;">E</span><span style="display: block; text-box: trim-both cap alphabetic;">R</span><span style="display: block; text-box: trim-both cap alphabetic;">A</span><span style="display: block; text-box: trim-both cap alphabetic;">X</span></span></a>
+  <div style="display: flex; justify-content: flex-end;">
+    <a href="#top" onClick="{{ goConfigure }}" class="btn btn-primary" style="border-radius: 0;">{{ ctaLabel }}</a>
+  </div>
+</nav>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Hero" style="background: var(--color-accent-900); color: var(--color-bg);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(88px, 12vw, 176px) 24px clamp(88px, 12vw, 168px); display: grid; justify-items: center; text-align: center; gap: 24px;">
+      <h1 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(46px, 7vw, 92px); line-height: 1.04; letter-spacing: 0.01em; text-transform: uppercase; margin: 0; max-width: 20ch;">AI workstations, machined from solid.</h1>
+      <p style="font-size: 19px; line-height: 28px; margin: 0; max-width: 46ch; color: color-mix(in srgb, #f2f2f3 80%, transparent);">Designed in Singapore. Built for the models you actually run.</p>
+      <button type="button" onClick="{{ goConfigure }}" class="btn" style="border-radius: 0; min-height: 44px; padding-inline: 28px; background: var(--color-bg); color: var(--color-accent-900); border-color: var(--color-bg); margin-top: 8px;">{{ ctaLabel }}</button>
+    </div>
+  </section>
+
+  <section data-screen-label="The Metal" style="background: var(--color-bg); color: var(--color-text);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(64px, 8vw, 112px) 24px; display: grid; justify-items: center; text-align: center; gap: 20px;">
+      <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.06; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">The Metal</h2>
+      <p style="font-size: 18px; line-height: 26px; margin: 0; max-width: 44ch; color: color-mix(in srgb, var(--color-text) 78%, transparent);">A case for large models.</p>
+      <button type="button" onClick="{{ goMetal }}" class="btn btn-secondary" style="border-radius: 0; min-height: 44px; padding-inline: 24px; margin-top: 4px;">Explore</button>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 4vw, 56px); width: 100%; max-width: 1000px; margin: 28px 0 0;">
+        <figure style="margin: 0; display: grid; gap: 12px;">
+          <div class="blueprint" style="position: relative;">
+            <img src="assets/mx-side.png" alt="Monderax MX-240, side elevation — machined fin stack in the wall" style="display: block; width: 100%; height: auto;">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          </div>
+          <figcaption style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent);">01 · Side elevation</figcaption>
+        </figure>
+        <figure style="margin: 0; display: grid; gap: 12px;">
+          <div class="blueprint" style="position: relative;">
+            <img src="assets/mx-rear.png" alt="Monderax MX-240, rear three-quarter — I/O shield, card bracket and exhaust" style="display: block; width: 100%; height: auto;">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          </div>
+          <figcaption style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent);">02 · Rear I/O</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Models" style="background: var(--color-accent-900); color: var(--color-bg);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(64px, 8vw, 112px) 24px; display: grid; justify-items: center; text-align: center; gap: 20px;">
+      <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.06; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">The Range</h2>
+      <p style="font-size: 18px; line-height: 26px; margin: 0; max-width: 44ch; color: color-mix(in srgb, #f2f2f3 78%, transparent);">Experience it at any scale.</p>
+      <button type="button" onClick="{{ goModels }}" class="btn btn-primary" style="border-radius: 0; min-height: 44px; padding-inline: 24px; margin-top: 4px;">Explore</button>
+      <figure class="blueprint" style="position: relative; margin: 36px 0 0; width: 100%; max-width: 860px; border-color: color-mix(in srgb, #f2f2f3 30%, transparent);">
+        <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+        <img src="assets/mx-range.png" alt="MX-120, MX-240 and MX-480 side by side" style="display: block; width: 100%; height: auto;">
+      </figure>
+      <p style="margin: 16px 0 0; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, #f2f2f3 62%, transparent);">24 · 48 · 96 GB</p>
+      </div>
+    
+  </section>
+
+  <section data-screen-label="Configurator" style="background: var(--color-bg); color: var(--color-text);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(64px, 8vw, 112px) 24px; display: grid; justify-items: center; text-align: center; gap: 20px;">
+      <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.06; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">Configurator</h2>
+      <p style="font-size: 18px; line-height: 26px; margin: 0; max-width: 44ch; color: color-mix(in srgb, var(--color-text) 78%, transparent);">Specify it yourself, down to the finish.</p>
+      <button type="button" onClick="{{ goConfigure }}" class="btn btn-secondary" style="border-radius: 0; min-height: 44px; padding-inline: 24px; margin-top: 4px;">Explore</button>
+      <figure class="blueprint" style="position: relative; margin: 32px 0 0; width: 100%; max-width: 720px; padding: 24px;">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <img src="assets/mx-exploded.png" alt="Monderax MX-240 exploded: top panel, accelerator, fin stack, board and base" style="display: block; width: 100%; height: auto;">
+        <figcaption style="margin: 16px 0 0; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent);">01 Top panel · 02 Accelerator · 03 Fin stack · 04 Board + memory · 05 Base + feet</figcaption>
+      </figure>
+          
+        </div>
+      
+    
+  </section>
+
+  <section data-screen-label="Workloads" style="background: var(--color-accent-900); color: var(--color-bg);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(64px, 8vw, 112px) 24px; display: grid; justify-items: center; text-align: center; gap: 20px;">
+      <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.06; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">Workloads</h2>
+      <p style="font-size: 18px; line-height: 26px; margin: 0; max-width: 44ch; color: color-mix(in srgb, #f2f2f3 78%, transparent);">Benchmarked on your model, not ours.</p>
+      <button type="button" onClick="{{ goWorkloads }}" class="btn btn-primary" style="border-radius: 0; min-height: 44px; padding-inline: 24px; margin-top: 4px;">Explore</button>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(24px, 4vw, 56px); width: 100%; max-width: 940px; margin: 36px 0 0;">
+        <div style="display: grid; gap: 8px; text-align: left;">
+          <span style="font-family: var(--font-heading); font-weight: 600; font-size: 22px; letter-spacing: 0.02em; text-transform: uppercase;">Runs your work</span>
+          <p style="margin: 0; font-size: 15px; line-height: 23px; color: color-mix(in srgb, #f2f2f3 76%, transparent);">Send us the job you actually run. We time it on your exact machine and send you the numbers before you commit.</p>
+        </div>
+        <div style="display: grid; gap: 8px; text-align: left;">
+          <span style="font-family: var(--font-heading); font-weight: 600; font-size: 22px; letter-spacing: 0.02em; text-transform: uppercase;">Ready on arrival</span>
+          <p style="margin: 0; font-size: 15px; line-height: 23px; color: color-mix(in srgb, #f2f2f3 76%, transparent);">Drivers, CUDA and PyTorch installed and pinned to versions tested together. Plug it in and start.</p>
+        </div>
+        <div style="display: grid; gap: 8px; text-align: left;">
+          <span style="font-family: var(--font-heading); font-weight: 600; font-size: 22px; letter-spacing: 0.02em; text-transform: uppercase;">Quiet enough to sit beside</span><p style="margin: 0; font-size: 15px; line-height: 23px; color: color-mix(in srgb, #f2f2f3 76%, transparent);">Full load, all night, and you can still hear the room.<br><br></p>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<main style="max-width: 1240px; margin: 0 auto; padding: 0 24px;">
+
+
+
+  <sc-if value="{{ isMetal }}" hint-placeholder-val="{{ true }}">
+<section aria-label="Machine data" style="padding: 24px 0 72px;">
+    <div class="blueprint" style="position: relative;">
+      <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+      <header style="display: flex; flex-wrap: wrap; align-items: stretch; border-bottom: 1px solid var(--color-divider);">
+        <span style="flex: 1; min-width: 16ch; padding: 12px 24px; font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Monderax MX — verified machine data</span>
+        <span style="padding: 12px 24px; border-left: 1px solid var(--color-divider); font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; white-space: nowrap; color: color-mix(in srgb, var(--color-text) 70%, transparent);">MX-240</span>
+        <span style="padding: 12px 24px; border-left: 1px solid var(--color-divider); font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; white-space: nowrap; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Rev D</span>
+        <span style="padding: 12px 24px; border-left: 1px solid var(--color-divider); font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; white-space: nowrap; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Sheet 01 of 03</span>
+      </header>
+      <table class="table" style="table-layout: fixed;">
+        
+        <thead>
+          <tr>
+            <th scope="col" style="padding: 12px 24px 12px 24px; font-size: 13px; font-weight: 600; color: color-mix(in srgb, var(--color-text) 70%, transparent);">No.</th>
+            <th scope="col" style="padding: 12px 24px 12px 0; font-size: 13px; font-weight: 600; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Property</th>
+            <th scope="col" style="padding: 12px 24px 12px 0; font-size: 13px; font-weight: 600; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Value</th>
+            <th scope="col" style="padding: 12px 24px 12px 0; font-size: 13px; font-weight: 600; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Remark</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 12px 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--color-accent-700);">01</td>
+            <td style="padding: 12px 24px 12px 0; font-size: 15px; line-height: 24px;">Chassis wall, machined</td>
+            <td style="padding: 12px 24px 12px 0; font-family: var(--font-heading); font-weight: 600; font-size: 22px; line-height: 24px; white-space: nowrap;">4.0 mm</td>
+            <td style="padding: 12px 24px 12px 0; font-size: 15px; line-height: 24px; color: color-mix(in srgb, var(--color-text) 78%, transparent);">One billet, no fasteners in the load path</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--color-accent-700);">02</td>
+            <td style="padding: 12px 24px 12px 0; font-size: 15px; line-height: 24px;">Sustained GPU power</td>
+            <td style="padding: 12px 24px 12px 0; font-family: var(--font-heading); font-weight: 600; font-size: 22px; line-height: 24px; white-space: nowrap;">600 W</td>
+            <td style="padding: 12px 24px 12px 0; font-size: 15px; line-height: 24px; color: color-mix(in srgb, var(--color-text) 78%, transparent);">No throttle across a 12-hour run</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--color-accent-700);">03</td>
+            <td style="padding: 12px 24px 12px 0; font-size: 15px; line-height: 24px;">Noise at the desk, loaded</td>
+            <td style="padding: 12px 24px 12px 0; font-family: var(--font-heading); font-weight: 600; font-size: 22px; line-height: 24px; white-space: nowrap;">31 dBA</td>
+            <td style="padding: 12px 24px 12px 0; font-size: 15px; line-height: 24px; color: color-mix(in srgb, var(--color-text) 78%, transparent);">Measured at 600 mm, anechoic room</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--color-accent-700);">04</td>
+            <td style="padding: 12px 24px 12px 0; font-size: 15px; line-height: 24px;">Burn-in before dispatch</td>
+            <td style="padding: 12px 24px 12px 0; font-family: var(--font-heading); font-weight: 600; font-size: 22px; line-height: 24px; white-space: nowrap;">72 h</td>
+            <td style="padding: 12px 24px 12px 0; font-size: 15px; line-height: 24px; color: color-mix(in srgb, var(--color-text) 78%, transparent);">Log ships with the machine</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin: 0; padding: 12px 24px; border-top: 1px solid var(--color-divider); font-size: 13px; line-height: 24px; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Figures hold for the MX-240 as specified in the configurator; earlier revisions are void.</p>
+    </div>
+  </section>
+</sc-if>
+
+  <sc-if value="{{ isConfigure }}" hint-placeholder-val="{{ true }}">
+<section id="configure" style="padding: 24px 0 80px;">
+    <span style="display: block; font-size: 13px; line-height: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-700); margin: 0 0 12px;">02 · Configurator</span>
+    <hr style="height: 1px; border: 0; margin: 0 0 12px; background: var(--color-divider);">
+    <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.06; letter-spacing: 0.02em; text-transform: uppercase; margin: 12px 0 0;">{{ configHeading }}</h2>
+    <p style="font-size: 16px; line-height: 24px; max-width: 60ch; margin: 12px 0 32px; color: color-mix(in srgb, var(--color-text) 78%, transparent);">{{ configIntro }}</p>
+
+    <div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 40px; align-items: start;">
+      <div style="{{ lockStyle }}" aria-hidden="{{ teaser }}">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--color-divider); padding-bottom: 8px;">
+            <span style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Accelerator</span>
+            <span style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Required</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 16px;">
+            <sc-for list="{{ gpuOptions }}" as="opt" hint-placeholder-count="3">
+              <button type="button" onClick="{{ opt.pick }}" aria-pressed="{{ opt.selected }}" style="{{ opt.style }}" style-hover="border-color: var(--color-accent);">
+                <span style="display: block; font-family: var(--font-heading); font-weight: 600; font-size: 20px; line-height: 24px; letter-spacing: 0.02em; text-transform: uppercase;">{{ opt.name }}</span>
+                <span style="display: block; font-size: 14px; line-height: 20px; margin-top: 4px; color: color-mix(in srgb, var(--color-text) 72%, transparent);">{{ opt.note }}</span>
+                <span style="display: block; font-size: 13px; line-height: 20px; margin-top: 8px; letter-spacing: 0.06em; color: var(--color-accent-700);">{{ opt.delta }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--color-divider); padding-bottom: 8px;">
+            <span style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">System memory</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 16px;">
+            <sc-for list="{{ memOptions }}" as="opt" hint-placeholder-count="3">
+              <button type="button" onClick="{{ opt.pick }}" aria-pressed="{{ opt.selected }}" style="{{ opt.style }}" style-hover="border-color: var(--color-accent);">
+                <span style="display: block; font-family: var(--font-heading); font-weight: 600; font-size: 20px; line-height: 24px; letter-spacing: 0.02em; text-transform: uppercase;">{{ opt.name }}</span>
+                <span style="display: block; font-size: 13px; line-height: 20px; margin-top: 8px; letter-spacing: 0.06em; color: var(--color-accent-700);">{{ opt.delta }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--color-divider); padding-bottom: 8px;">
+            <span style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Storage</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 16px;">
+            <sc-for list="{{ storageOptions }}" as="opt" hint-placeholder-count="3">
+              <button type="button" onClick="{{ opt.pick }}" aria-pressed="{{ opt.selected }}" style="{{ opt.style }}" style-hover="border-color: var(--color-accent);">
+                <span style="display: block; font-family: var(--font-heading); font-weight: 600; font-size: 20px; line-height: 24px; letter-spacing: 0.02em; text-transform: uppercase;">{{ opt.name }}</span>
+                <span style="display: block; font-size: 13px; line-height: 20px; margin-top: 8px; letter-spacing: 0.06em; color: var(--color-accent-700);">{{ opt.delta }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--color-divider); padding-bottom: 8px;">
+            <span style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Chassis finish</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 16px;">
+            <sc-for list="{{ finishOptions }}" as="opt" hint-placeholder-count="3">
+              <button type="button" onClick="{{ opt.pick }}" aria-pressed="{{ opt.selected }}" style="{{ opt.style }}" style-hover="border-color: var(--color-accent);">
+                <span style="display: block; font-family: var(--font-heading); font-weight: 600; font-size: 20px; line-height: 24px; letter-spacing: 0.02em; text-transform: uppercase;">{{ opt.name }}</span>
+                <span style="display: block; font-size: 14px; line-height: 20px; margin-top: 4px; color: color-mix(in srgb, var(--color-text) 72%, transparent);">{{ opt.note }}</span>
+                <span style="display: block; font-size: 13px; line-height: 20px; margin-top: 8px; letter-spacing: 0.06em; color: var(--color-accent-700);">{{ opt.delta }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <sc-if value="{{ teaser }}" hint-placeholder-val="{{ true }}">
+        <aside class="blueprint" style="position: sticky; top: 96px; padding: 0;">
+          <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+          <div style="padding: 12px 20px; border-bottom: 1px solid var(--color-divider); font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Waitlist</div>
+          <div style="padding: 20px;">
+            <p style="margin: 0; font-family: var(--font-heading); font-weight: 600; font-size: 28px; line-height: 30px; letter-spacing: 0.02em; text-transform: uppercase;">Coming {{ launchDateText }}</p>
+            <p style="margin: 16px 0 0; font-size: 15px; line-height: 24px; color: color-mix(in srgb, var(--color-text) 78%, transparent);">We are not publishing prices or final part numbers until launch. Join the list and you get the build sheet, the burn-in data and an assembly slot the morning the configurator opens.</p>
+            <form onSubmit="{{ onSubscribe }}" style="display: grid; gap: 12px; margin-top: 20px;">
+              <input class="input" type="email" required="required" placeholder="you@example.com" aria-label="Email address" style="border-radius: 0; min-height: 44px;">
+              <button type="submit" class="btn btn-primary btn-block" style="border-radius: 0; min-height: 44px;">{{ waitlistLabel }}</button>
+            </form>
+          </div>
+          <div style="border-top: 1px solid var(--color-divider); padding: 12px 20px; display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent);">
+            <span>Founding run</span>
+            <span style="font-family: var(--font-heading); font-size: 20px; letter-spacing: 0.02em; color: var(--color-text);">{{ runNumber }}</span>
+          </div>
+        </aside>
+      </sc-if>
+      <sc-if value="{{ notTeaser }}" hint-placeholder-val="{{ false }}">
+      <aside class="blueprint" style="position: sticky; top: 96px; padding: 0;">
+        <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+        <div style="padding: 12px 20px; border-bottom: 1px solid var(--color-divider); font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Build sheet</div>
+        <dl style="margin: 0; padding: 20px; display: grid; grid-template-columns: max-content 1fr; column-gap: 20px; row-gap: 10px; font-size: 14px; line-height: 20px;">
+          <dt style="letter-spacing: 0.06em; text-transform: uppercase; font-size: 12px; color: color-mix(in srgb, var(--color-text) 70%, transparent);">GPU</dt>
+          <dd style="margin: 0; text-align: right;">{{ pickedGpu }}</dd>
+          <dt style="letter-spacing: 0.06em; text-transform: uppercase; font-size: 12px; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Memory</dt>
+          <dd style="margin: 0; text-align: right;">{{ pickedMem }}</dd>
+          <dt style="letter-spacing: 0.06em; text-transform: uppercase; font-size: 12px; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Storage</dt>
+          <dd style="margin: 0; text-align: right;">{{ pickedStorage }}</dd>
+          <dt style="letter-spacing: 0.06em; text-transform: uppercase; font-size: 12px; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Finish</dt>
+          <dd style="margin: 0; text-align: right;">{{ pickedFinish }}</dd>
+          <dt style="letter-spacing: 0.06em; text-transform: uppercase; font-size: 12px; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Draw</dt>
+          <dd style="margin: 0; text-align: right;">{{ powerText }}</dd>
+        </dl>
+        <div style="padding: 16px 20px; border-top: 1px solid var(--color-divider); display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Total, inc. GST</span>
+          <span style="font-family: var(--font-heading); font-weight: 600; font-size: 34px; line-height: 34px; font-feature-settings: 'tnum' 1;">{{ priceText }}</span>
+        </div>
+        <div style="padding: 0 20px 20px;">
+          <button type="button" class="btn btn-primary btn-block" style="border-radius: 0; min-height: 44px;">Add to build queue</button>
+          <p style="margin: 12px 0 0; font-size: 13px; line-height: 20px; color: color-mix(in srgb, var(--color-text) 70%, transparent);">Assembly slot held for 48 hours. Nothing is charged until the burn-in log passes.</p>
+        </div>
+      </aside>
+      </sc-if>
+    </div>
+  </section>
+</sc-if>
+
+  <sc-if value="{{ isMetal }}" hint-placeholder-val="{{ true }}">
+<section id="metal" style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 72px; align-items: center; padding: 48px 0 80px;">
+    <div>
+      <span style="display: block; font-size: 13px; line-height: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-700); margin: 0 0 12px;">03 · The metal</span>
+      <hr style="height: 1px; border: 0; margin: 0 0 12px; background: var(--color-divider);">
+      <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(28px, 3vw, 40px); line-height: 1.08; letter-spacing: 0.02em; text-transform: uppercase; margin: 12px 0 0;">Large models want larger metal</h2>
+      <p style="font-size: 16px; line-height: 24px; max-width: 48ch; margin: 16px 0 0; color: color-mix(in srgb, var(--color-text) 78%, transparent);">Nine hours on the mill turns a 34 kg block into an 8 kg shell. The GPU bracket, the fin stack and the feet are the same piece of metal, so heat leaves through the walls instead of being blown at your desk. Anodised, not painted, with 316L stainless fasteners and a conformal-coated board set — a tropical spec that survives 85% humidity for a decade.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; margin-top: 28px;">
+        <div>
+          <div style="font-family: var(--font-heading); font-weight: 600; font-size: 28px; line-height: 28px;">6082-T6</div>
+          <div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); margin-top: 4px;">Alloy</div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-heading); font-weight: 600; font-size: 28px; line-height: 28px;">9 h</div>
+          <div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); margin-top: 4px;">Machine time</div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-heading); font-weight: 600; font-size: 28px; line-height: 28px;">8.2 kg</div>
+          <div style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); margin-top: 4px;">Bare shell</div>
+        </div>
+      </div>
+    </div>
+    <figure class="blueprint" style="margin: 0; overflow: visible;">
+      <img src="assets/mx-quarter.png" alt="Monderax MX-240, front three-quarter" style="display: block; width: 100%; height: auto;">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    </figure>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isModels }}" hint-placeholder-val="{{ true }}">
+  <section id="models" style="padding: 24px 0 80px;">
+    <span style="display: block; font-size: 13px; line-height: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-700); margin: 0 0 12px;">04 · The range</span>
+    <hr style="height: 1px; border: 0; margin: 0 0 32px; background: var(--color-divider);">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 48px);">
+      <article class="blueprint" style="padding: 24px; display: flex; flex-direction: column; height: 100%;">
+        <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+        <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-700);">MX-120 · Desk</span>
+        <h3 style="font-family: var(--font-heading); font-weight: 600; font-size: 26px; line-height: 28px; letter-spacing: 0.02em; text-transform: uppercase; margin: 12px 0 0;">One card, silent</h3>
+        <p style="font-size: 15px; line-height: 24px; margin: 12px 0 0; color: color-mix(in srgb, var(--color-text) 78%, transparent);">A single 24 GB accelerator for fine-tuning, diffusion and local 70B inference at 4-bit. Fits under a monitor arm.</p>
+        <ul style="list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 8px; font-size: 14px; line-height: 20px;">
+          <li>24 GB VRAM · 64 GB system</li>
+          <li>410 W sustained</li>
+          <li>14 litre shell</li>
+        </ul>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: auto; border-top: 1px solid var(--color-divider); padding-top: 16px;">
+          <span style="{{ priceStyle }}">{{ price120 }}</span>
+          <a href="#top" onClick="{{ goConfigure }}" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Configure →</a>
+        </div>
+      </article>
+      <article class="blueprint" style="padding: 24px; display: flex; flex-direction: column; height: 100%;">
+        <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+        <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-700);">MX-240 · Studio</span>
+        <h3 style="font-family: var(--font-heading); font-weight: 600; font-size: 26px; line-height: 28px; letter-spacing: 0.02em; text-transform: uppercase; margin: 12px 0 0;">The house machine</h3>
+        <p style="font-size: 15px; line-height: 24px; margin: 12px 0 0; color: color-mix(in srgb, var(--color-text) 78%, transparent);">48 GB of VRAM and enough sustained power to train through the night without touching a fan curve. The one most people buy.</p>
+        <ul style="list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 8px; font-size: 14px; line-height: 20px;">
+          <li>48 GB VRAM · 128 GB system</li>
+          <li>600 W sustained</li>
+          <li>22 litre shell</li>
+        </ul>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: auto; border-top: 1px solid var(--color-divider); padding-top: 16px;">
+          <span style="{{ priceStyle }}">{{ price240 }}</span>
+          <a href="#top" onClick="{{ goConfigure }}" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Configure →</a>
+        </div>
+      </article>
+      <article class="blueprint" style="padding: 24px; display: flex; flex-direction: column; height: 100%;">
+        <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+        <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-700);">MX-480 · Bench</span>
+        <h3 style="font-family: var(--font-heading); font-weight: 600; font-size: 26px; line-height: 28px; letter-spacing: 0.02em; text-transform: uppercase; margin: 12px 0 0;">One card, 96 GB</h3>
+        <p style="font-size: 15px; line-height: 24px; margin: 12px 0 0; color: color-mix(in srgb, var(--color-text) 78%, transparent);">A single 96 GB accelerator that holds 120B-class models resident at full 128k context — no offloading to system RAM, no sharding across cards.</p>
+        <ul style="list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 8px; font-size: 14px; line-height: 20px;">
+          <li>96 GB VRAM · 256 GB system</li>
+          <li>780 W sustained</li>
+          <li>31 litre shell</li>
+        </ul>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: auto; border-top: 1px solid var(--color-divider); padding-top: 16px;">
+          <span style="{{ priceStyle }}">{{ price480 }}</span>
+          <a href="#top" onClick="{{ goConfigure }}" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Configure →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isWorkloads }}" hint-placeholder-val="{{ true }}">
+  <section id="workloads" style="padding: 24px 0 80px;">
+    <span style="display: block; font-size: 13px; line-height: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-700); margin: 0 0 12px;">05 · Measured, not promised</span>
+    <hr style="height: 1px; border: 0; margin: 0 0 32px; background: var(--color-divider);">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 48px);">
+      <div class="blueprint" style="padding: 24px;">
+        <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+        <h3 style="font-family: var(--font-heading); font-weight: 600; font-size: 22px; line-height: 24px; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">Your model, benchmarked</h3>
+        <p style="font-size: 15px; line-height: 24px; margin: 20px 0 0; color: color-mix(in srgb, var(--color-text) 78%, transparent);">Send us the training script you actually run. We time it on the exact configuration you specified and put the numbers in the build sheet before you pay.</p>
+      </div>
+      <div class="blueprint" style="padding: 24px;">
+        <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+        <h3 style="font-family: var(--font-heading); font-weight: 600; font-size: 22px; line-height: 24px; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">Open by design</h3>
+        <p style="font-size: 15px; line-height: 24px; margin: 20px 0 0; color: color-mix(in srgb, var(--color-text) 78%, transparent);">Standard parts, standard sockets, documented torque values. Six hex screws open the shell, and the service drawing ships in the box — upgrading is not a warranty event.</p>
+      </div>
+      <div class="blueprint" style="padding: 24px;">
+        <i class="corner tl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner tr" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner bl" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i><i class="corner br" style="color: color-mix(in srgb, #f2f2f3 60%, transparent);"></i>
+        <h3 style="font-family: var(--font-heading); font-weight: 600; font-size: 22px; line-height: 24px; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">Ready on arrival</h3>
+        <p style="font-size: 15px; line-height: 24px; margin: 20px 0 0; color: color-mix(in srgb, var(--color-text) 78%, transparent);">Drivers, CUDA, PyTorch and a local inference server are installed and pinned to versions that were tested together. Plug in, ssh in, train.</p>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isWorkloads }}" hint-placeholder-val="{{ true }}">
+  <section style="padding: 24px 0 88px;">
+    <figure style="margin: 0;">
+      <blockquote style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(26px, 2.8vw, 36px); line-height: 1.25; max-width: 40ch; margin: 0; text-indent: -0.316em;">“It replaced four hours of cloud rental a day and it is quieter than the fridge. I forget it is running until I touch the top panel.”</blockquote>
+      <figcaption style="font-size: 15px; line-height: 24px; margin: 40px 0 0; text-indent: -0.885em; color: color-mix(in srgb, var(--color-text) 70%, transparent);">— W. Tanuwijaya, independent ML researcher, MX-240 owner, Singapore</figcaption>
+    </figure>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isSupport }}" hint-placeholder-val="{{ true }}">
+  <section id="support" style="padding: 0 0 72px;">
+    <span style="display: block; font-size: 13px; line-height: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-700); margin: 0 0 12px;">06 · Keep in touch</span>
+    <hr style="height: 1px; border: 0; margin: 0 0 12px; background: var(--color-divider);">
+    <h3 style="font-family: var(--font-heading); font-weight: 600; font-size: 26px; line-height: 28px; letter-spacing: 0.02em; text-transform: uppercase; margin: 12px 0 0;">Shop notes, monthly</h3>
+    <p style="font-size: 15px; line-height: 24px; max-width: 60ch; margin: 12px 0 0; color: color-mix(in srgb, var(--color-text) 78%, transparent);">Thermal test results, part revisions, and what we learned machining them. No launch countdowns.</p>
+    <form onSubmit="{{ onSubscribe }}" style="display: flex; gap: 12px; align-items: stretch; max-width: 480px; margin-top: 24px;">
+      <input class="input" type="email" required="required" placeholder="you@example.com" aria-label="Email address" style="flex: 1; border-radius: 0; min-height: 44px;">
+      <button type="submit" class="btn btn-primary" style="border-radius: 0; min-height: 44px; padding-inline: 20px;">{{ subscribeLabel }}</button>
+    </form>
+  </section>
+</sc-if>
+</main>
+
+<footer style="border-top: 1px solid var(--color-divider);">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 32px; font-size: 14px; line-height: 24px;">
+    <div>
+      <span style="font-family: var(--font-heading); font-weight: 600; font-size: 24px; line-height: 1; text-transform: uppercase; letter-spacing: 0; display: inline-flex; align-items: center; gap: 0.08em; text-box: trim-both cap alphabetic;"><span style="display: block; text-box: trim-both cap alphabetic;">M</span><img src="assets/monderax-mark-lockup.png" alt="o" style="display: block; align-self: center; height: 0.72em; width: auto; flex: 0 0 auto;"><span style="display: block; text-box: trim-both cap alphabetic;">N</span><span style="display: block; text-box: trim-both cap alphabetic;">D</span><span style="display: block; text-box: trim-both cap alphabetic;">E</span><span style="display: block; text-box: trim-both cap alphabetic;">R</span><span style="display: block; text-box: trim-both cap alphabetic;">A</span><span style="display: block; text-box: trim-both cap alphabetic;">X</span></span>
+      <p style="margin: 12px 0 0; color: color-mix(in srgb, var(--color-text) 70%, transparent);">AI workstations designed, assembled and supported in Singapore. Shipped across APAC.</p>
+    </div>
+    <div>
+      <div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Machines</div>
+      <div style="display: grid; gap: 6px; margin-top: 12px;">
+        <a href="#top" onClick="{{ goConfigure }}">Configurator</a>
+        <a href="#top" onClick="{{ goModels }}">The range</a>
+        <a href="#top" onClick="{{ goMetal }}">The metal</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Support</div>
+      <div style="display: grid; gap: 6px; margin-top: 12px;">
+        <a href="#top" onClick="{{ goSupport }}">Contact</a>
+        <a href="#top" onClick="{{ goSupport }}">Warranty</a>
+        <a href="#top" onClick="{{ goSupport }}">Service drawings</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Shop</div>
+      <div style="display: grid; gap: 6px; margin-top: 12px;">
+        <a href="#top" onClick="{{ goWorkloads }}">Benchmarking</a>
+        <a href="#top" onClick="{{ goSupport }}">Trade-in</a>
+        <a href="#top" onClick="{{ goSupport }}">Press</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px 40px; font-size: 13px; color: color-mix(in srgb, var(--color-text) 60%, transparent);">© 2026 Monderax Pte. Ltd. · 24 Pioneer Sector 2, Singapore 628377 — a fictional brand built for this design exercise.</div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;teaser&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Launch&quot;},&quot;launchDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Q1 2027&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Launch&quot;}}">
+class Component extends DCLogic {
+  state = { gpu: 1, mem: 1, storage: 1, finish: 0, subscribed: false, page: "home" };
+
+  go(page) {
+    return (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      this.setState({ page });
+      if (typeof window !== "undefined") window.scrollTo({ top: 0 });
+    };
+  }
+
+  gpus() {
+    return [
+      { name: "24 GB", note: "Fine-tune, diffusion, 70B at 4-bit", price: 0, watts: 410 },
+      { name: "48 GB", note: "Full 70B inference, long context", price: 4800, watts: 600 },
+      { name: "96 GB", note: "120B-class models in memory, 128k context, no offload", price: 14600, watts: 1150 }
+    ];
+  }
+  mems() {
+    return [
+      { name: "64 GB", price: 0 },
+      { name: "128 GB", price: 720 },
+      { name: "256 GB", price: 2040 }
+    ];
+  }
+  storages() {
+    return [
+      { name: "2 TB", price: 0 },
+      { name: "4 TB", price: 590 },
+      { name: "8 TB", price: 1520 }
+    ];
+  }
+  finishes() {
+    return [
+      { name: "Raw mill", note: "As cut, clear-coated", price: 0 },
+      { name: "Steel anodise", note: "Bead blast, type II", price: 310 },
+      { name: "Graphite", note: "Hard anodise, type III", price: 550 }
+    ];
+  }
+
+  optStyle(selected) {
+    return {
+      textAlign: "left",
+      cursor: "pointer",
+      font: "inherit",
+      color: "inherit",
+      padding: "16px",
+      minHeight: "44px",
+      borderRadius: "0",
+      border: selected ? "1px solid var(--color-accent)" : "1px solid var(--color-divider)",
+      background: selected ? "color-mix(in srgb, var(--color-accent) 12%, transparent)" : "transparent",
+      boxShadow: selected ? "inset 0 0 0 1px var(--color-accent)" : "none"
+    };
+  }
+
+  build(list, key) {
+    return list.map((o, i) => ({
+      name: o.name,
+      note: o.note || "",
+      delta: (this.props.teaser ?? true)
+        ? (o.price === 0 ? "Included" : "Price at launch")
+        : (o.price === 0 ? "Included" : "+ S$" + o.price.toLocaleString("en-SG")),
+      selected: this.state[key] === i,
+      style: this.optStyle(this.state[key] === i),
+      pick: () => this.setState({ [key]: i })
+    }));
+  }
+
+  renderVals() {
+    const teaser = this.props.teaser ?? true;
+    const launchDateText = this.props.launchDate ?? "Q1 2027";
+    const g = this.gpus()[this.state.gpu];
+    const m = this.mems()[this.state.mem];
+    const s = this.storages()[this.state.storage];
+    const f = this.finishes()[this.state.finish];
+    const total = 6000 + g.price + m.price + s.price + f.price;
+    const page = this.state.page;
+    const cur = (p) => (page === p ? "page" : undefined);
+    return {
+      isHome: page === "home",
+      isConfigure: page === "configure",
+      isMetal: page === "metal",
+      isModels: page === "models",
+      isWorkloads: page === "workloads",
+      isSupport: page === "support",
+      curConfigure: cur("configure"),
+      curMetal: cur("metal"),
+      curModels: cur("models"),
+      curWorkloads: cur("workloads"),
+      curSupport: cur("support"),
+      goHome: this.go("home"),
+      goConfigure: this.go("configure"),
+      goMetal: this.go("metal"),
+      goModels: this.go("models"),
+      goWorkloads: this.go("workloads"),
+      goSupport: this.go("support"),
+      teaser,
+      notTeaser: !teaser,
+      launchDateText,
+      price120: teaser ? "Price at launch" : "S$6,000",
+      price240: teaser ? "Price at launch" : "S$10,800",
+      price480: teaser ? "Price at launch" : "S$20,500",
+      priceStyle: teaser
+        ? { fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "15px", letterSpacing: "0.08em", textTransform: "uppercase", whiteSpace: "nowrap", color: "color-mix(in srgb, var(--color-text) 70%, transparent)" }
+        : { fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "26px", whiteSpace: "nowrap" },
+      runNumber: "50 machines",
+      runText: "Founding run · 50 numbered machines",
+      ctaLabel: teaser ? "Join the waitlist" : "Configure a machine",
+      shipLabel: teaser ? "First units " + launchDateText : "Ships in 12 days",
+      waitlistLabel: this.state.subscribed ? "You're on the list" : "Join the waitlist",
+      configHeading: teaser ? "The configurator, sealed" : "Specify your machine",
+      configIntro: teaser
+        ? "Four decisions, thermally validated — and locked until launch. This is the whole options list; the prices behind it are the only thing we are holding back."
+        : "Four decisions. Every combination is thermally validated — if a part cannot hold its clocks in this chassis, it is not on the list.",
+      lockStyle: teaser
+        ? { display: "grid", gap: "32px", opacity: 0.45, pointerEvents: "none", filter: "grayscale(0.4)" }
+        : { display: "grid", gap: "32px" },
+      gpuOptions: this.build(this.gpus(), "gpu"),
+      memOptions: this.build(this.mems(), "mem"),
+      storageOptions: this.build(this.storages(), "storage"),
+      finishOptions: this.build(this.finishes(), "finish"),
+      pickedGpu: g.name,
+      pickedMem: m.name,
+      pickedStorage: s.name,
+      pickedFinish: f.name,
+      powerText: g.watts + " W sustained",
+      priceText: "S$" + total.toLocaleString("en-SG"),
+      subscribeLabel: this.state.subscribed ? "On the list" : "Subscribe",
+      onSubscribe: (e) => { e.preventDefault(); this.setState({ subscribed: true }); }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

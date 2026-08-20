@@ -1,0 +1,7 @@
+# vendored at deploy time by vendor.sh — not committed
+docs/vendor/
+
+# local editor / OS noise
+.DS_Store
+*.bak
+.thumbnail

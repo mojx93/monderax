@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MX-15 — the five service layers</title>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.184.0/examples/jsm/"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&amp;display=swap">
+<style>
+  html, body { margin: 0; height: 100%; background: #16222e; font-family: 'Barlow', system-ui, sans-serif; }
+  three-d-stage:not(:defined) { visibility: hidden; }
+  three-d-stage { display: block; width: 100vw; height: 100vh; }
+  .ui {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    display: flex; align-items: center; gap: 18px;
+    padding: 18px 22px 20px;
+    background: linear-gradient(to top, rgba(14, 23, 32, 0.85), rgba(14, 23, 32, 0));
+    color: rgba(242, 242, 243, 0.9);
+  }
+  .ui button {
+    appearance: none; border: 1px solid rgba(242, 242, 243, 0.28); border-radius: 0;
+    background: rgba(242, 242, 243, 0.08); color: rgba(242, 242, 243, 0.92);
+    font: 500 12.5px/1 'Barlow', system-ui, sans-serif; letter-spacing: 0.08em;
+    text-transform: uppercase; white-space: nowrap; padding: 11px 16px; cursor: pointer;
+  }
+  .ui button:hover { background: rgba(242, 242, 243, 0.16); }
+  .ui button:focus-visible { outline: 2px solid #5980a6; outline-offset: 2px; }
+  .ui input[type="range"] { flex: 1; max-width: 320px; accent-color: #5980a6; }
+  .ui label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242, 242, 243, 0.5); }
+  /* Top-left, clear of both the control bar and the stage's export toolbar at
+     bottom-right — putting it at the bar's right end collided with the toolbar. */
+  .hint {
+    position: fixed; top: 18px; left: 22px;
+    font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(242, 242, 243, 0.42); pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<three-d-stage name="monderax-mx15-exploded" viewport-inset-bottom="74" background="radial-gradient(120% 95% at 50% 42%, #33506b 0%, #24394d 38%, #16222e 72%, #0e1720 100%)"></three-d-stage>
+<span class="hint">Drag to turn · scroll to zoom</span>
+<div class="ui">
+  <button type="button" id="toggle">Close it up</button>
+  <label for="amt">Separation</label>
+  <input type="range" id="amt" min="0" max="1" step="0.01" value="1" aria-label="Layer separation">
+</div>
+<script src="./three-d-stage.js"></script>
+<script type="module">
+  import * as THREE from 'three';
+  import { buildCase, setExplode } from './mx-case-model.js';
+  const stage = document.querySelector('three-d-stage');
+  await stage.ready;
+  const model = buildCase();
+
+  // Dedicated rig for the exploded view. The closed-case lighting is aimed into one
+  // 15 cm cavity, so once the layers separate they fall outside every light and read
+  // as near-black slabs (measured canvas mean 10.6 against the hero's 28.5). These
+  // are children of the model, so they travel with it and cover the whole stack.
+  const rig = new THREE.Group();
+  rig.name = 'explodedRig';
+  const above = new THREE.DirectionalLight(0xf2f6fb, 1.6);
+  above.position.set(-0.5, 1.6, 0.7);
+  rig.add(above);
+  const front = new THREE.DirectionalLight(0xdce8f6, 1.1);
+  front.position.set(0.6, 0.4, 1.4);
+  rig.add(front);
+  // up-light so the underside of each lifted slab is not a black void
+  const under = new THREE.DirectionalLight(0x9fb6cc, 0.55);
+  under.position.set(0.2, -1.0, 0.6);
+  rig.add(under);
+  model.add(rig);
+
+  setExplode(model, 1);
+  stage.setObject(model);
+
+  const slider = document.getElementById('amt');
+  const toggle = document.getElementById('toggle');
+  let target = 1, current = 1, raf = null;
+
+  // Animate toward the target instead of snapping: the point of an exploded view is
+  // seeing which part came from where, and that only reads in motion.
+  function tick() {
+    current += (target - current) * 0.12;
+    if (Math.abs(target - current) < 0.002) current = target;
+    setExplode(model, current);
+    slider.value = current.toFixed(2);
+    toggle.textContent = current > 0.5 ? 'Close it up' : 'Open it up';
+    if (current !== target) raf = requestAnimationFrame(tick);
+    else raf = null;
+  }
+  function goTo(v) {
+    target = v;
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+  toggle.addEventListener('click', () => goTo(target > 0.5 ? 0 : 1));
+  slider.addEventListener('input', () => {
+    target = current = parseFloat(slider.value);
+    setExplode(model, current);
+    toggle.textContent = current > 0.5 ? 'Close it up' : 'Open it up';
+  });
+
+  // The stage puts its own orbit hint at bottom-left, which is exactly where this
+  // page's control bar sits — the two overlapped and both went illegible. This page
+  // carries the hint in its own bar instead.
+  stage.shadowRoot.querySelector('.note')?.remove();
+  // lift the export toolbar clear of this page's control bar
+  const tb = stage.shadowRoot.querySelector('.toolbar');
+  if (tb) tb.style.bottom = '78px';
+
+  if (new URLSearchParams(location.search).has('embed')) {
+    stage.shadowRoot.querySelector('.toolbar')?.remove();
+  }
+</script>
+</body>
+</html>

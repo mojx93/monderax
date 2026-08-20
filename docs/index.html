@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-b2e08125-3f0f-46eb-b819-c107c18a40c2/styles.css">
+<script src="_ds/industry-b2e08125-3f0f-46eb-b819-c107c18a40c2/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<style>
+  /* Barlow for body under Barlow Condensed headings, per the system's pairing —
+     both already loaded by the design-system stylesheet, so no extra font fetch. */
+  body { margin: 0; background: #ffffff; color: #1d1f20; font-family: var(--font-body); font-size: 17px; line-height: 1.6; text-wrap: pretty; -webkit-font-smoothing: antialiased; }
+  button, input { font-family: var(--font-body); }
+  a { color: #1d1f20; text-decoration: none; }
+  a:hover { color: var(--color-accent-700); }
+  html { scroll-behavior: smooth; }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  @media (max-width: 980px) {
+    .mx-hero { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
+    .mx-two { grid-template-columns: minmax(0, 1fr) !important; }
+    .mx-three { grid-template-columns: minmax(0, 1fr) !important; }
+    .mx-config { grid-template-columns: minmax(0, 1fr) !important; }
+    .mx-exploded { grid-template-columns: minmax(0, 1fr) !important; }
+  }
+  @media (max-width: 760px) {
+    .mx-nav-links { gap: 14px !important; font-size: 14px !important; }
+  }
+</style>
+</helmet>
+
+<sc-if value="{{ teaser }}" hint-placeholder-val="{{ true }}">
+  <div style="background: var(--color-accent-900); color: #f2f2f3;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 9px 24px; display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: space-between; align-items: baseline; font-size: 13px; line-height: 20px; letter-spacing: 0.04em;">
+      <span style="white-space: nowrap;">Unannounced · Coming {{ launchDateText }}</span>
+      <span style="color: rgba(242, 242, 243, 0.66); white-space: nowrap;">{{ runText }}</span>
+    </div>
+  </div>
+</sc-if>
+
+<nav style="position: sticky; top: 0; z-index: 20; background: rgba(255, 255, 255, 0.92); backdrop-filter: saturate(140%) blur(8px); border-bottom: 1px solid rgba(29, 31, 32, 0.10); padding-inline: max(24px, calc((100% - 1240px) / 2 + 24px)); display: grid; grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr); align-items: center; gap: 20px; min-height: 64px;">
+  <div class="mx-nav-links" style="display: flex; align-items: center; gap: 22px; white-space: nowrap; font-size: 15px; font-weight: 500;">
+    <a href="#top" onClick="{{ goConfigure }}" aria-current="{{ curConfigure }}">Configurator</a>
+    <a href="#top" onClick="{{ goModels }}" aria-current="{{ curModels }}">Models</a>
+    <a href="#top" onClick="{{ goMetal }}" aria-current="{{ curMetal }}">Metal</a>
+    <a href="#top" onClick="{{ goWorkloads }}" aria-current="{{ curWorkloads }}">Workloads</a>
+    <a href="#top" onClick="{{ goSupport }}" aria-current="{{ curSupport }}">Support</a>
+  </div>
+  <a href="#top" onClick="{{ goHome }}" style="justify-self: center; display: flex; align-items: center; text-decoration: none; color: inherit;"><span style="font-family: var(--font-heading); font-weight: 600; font-size: 22px; line-height: 1; text-transform: uppercase; letter-spacing: 0; display: inline-flex; align-items: center; gap: 0.08em; text-box: trim-both cap alphabetic;"><span style="display: block; text-box: trim-both cap alphabetic;">M</span><img src="assets/monderax-mark-lockup.png" alt="o" style="display: block; align-self: center; height: 0.72em; width: auto; flex: 0 0 auto;"><span style="display: block; text-box: trim-both cap alphabetic;">N</span><span style="display: block; text-box: trim-both cap alphabetic;">D</span><span style="display: block; text-box: trim-both cap alphabetic;">E</span><span style="display: block; text-box: trim-both cap alphabetic;">R</span><span style="display: block; text-box: trim-both cap alphabetic;">A</span><span style="display: block; text-box: trim-both cap alphabetic;">X</span></span></a>
+  <div style="display: flex; justify-content: flex-end;">
+    <a href="#top" onClick="{{ goConfigure }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 20px; border-radius: 0; background: #1d1f20; color: #ffffff; font-size: 14px; font-weight: 500; white-space: nowrap;" style-hover="background: #000000; color: #ffffff;">{{ ctaLabel }}</a>
+  </div>
+</nav>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Hero" style="background: var(--color-accent-900); color: #f2f2f3;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(76px, 10vw, 132px) 24px clamp(28px, 4vw, 48px); display: grid; justify-items: center; text-align: center; gap: 22px;">
+      <h1 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(46px, 7vw, 92px); line-height: 1.04; letter-spacing: 0.01em; text-transform: uppercase; margin: 0; max-width: 20ch;">Big models, on your desk.</h1>
+      <p style="font-size: 19px; line-height: 1.5; margin: 0; max-width: 48ch; color: rgba(242, 242, 243, 0.78);">Fifteen litres of machined aluminium around an RTX PRO 6000 Blackwell. Ninety-six gigabytes of VRAM in your study - not in someone else's data centre.</p>
+      <button type="button" onClick="{{ goConfigure }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 28px; margin-top: 6px; border: 0; border-radius: 0; background: #f2f2f3; color: #1d2d3d; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #ffffff;">{{ ctaLabel }}</button>
+    </div>
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(48px, 6vw, 84px); display: grid; justify-items: center; gap: 16px; color: rgba(242, 242, 243, 0.92);">
+      <div class="blueprint" style="position: relative; width: 100%; max-width: 720px; aspect-ratio: 16 / 7; overflow: hidden; border: 1px solid rgba(242, 242, 243, 0.22);">
+        <i class="corner tl" style="color: rgba(242, 242, 243, 0.5);"></i>
+        <i class="corner tr" style="color: rgba(242, 242, 243, 0.5);"></i>
+        <i class="corner bl" style="color: rgba(242, 242, 243, 0.5);"></i>
+        <i class="corner br" style="color: rgba(242, 242, 243, 0.5);"></i>
+        <iframe src="viewer-case.html?embed" title="MX-15, part-framed" loading="lazy" tabindex="-1" style="position: absolute; left: 0; top: 4%; display: block; width: 100%; height: 130%; border: 0; background: #16222e; pointer-events: none;"></iframe>
+        <div aria-hidden="true" style="position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(to bottom, rgba(22, 34, 46, 0) 0%, var(--color-accent-900) 92%);"></div>
+      </div>
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242, 242, 243, 0.55);">MX-15 · RTX PRO 6000 Blackwell · 15.3 litres · <a href="#top" onClick="{{ goConfigure }}" style="color: rgba(242, 242, 243, 0.8); text-decoration: underline; text-underline-offset: 3px;">see all of it</a></p>
+    </div>
+  </section>
+
+  <section data-screen-label="Configurator" style="background: #ffffff; border-top: 1px solid rgba(29, 31, 32, 0.10);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(64px, 8vw, 104px) 24px; display: grid; justify-items: center; text-align: center; gap: 18px;">
+      <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.06; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">Configurator</h2>
+      <p style="font-size: 18px; line-height: 1.5; margin: 0; max-width: 46ch; color: rgba(29, 31, 32, 0.72);">The whole machine, laid out. Five layers, two panels, one hex key.</p>
+      <button type="button" onClick="{{ goConfigure }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 24px; margin-top: 4px; border: 1px solid rgba(29, 31, 32, 0.28); border-radius: 0; background: transparent; color: #1d1f20; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: rgba(29, 31, 32, 0.05);">Explore</button>
+      <figure style="margin: 30px 0 0; width: 100%; max-width: 1120px; display: grid; gap: 14px; text-align: left;">
+        <div class="mx-exploded" style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(24px, 3.4vw, 48px); align-items: center; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(22px, 3vw, 40px); color: #1d1f20;">
+          <div class="blueprint" style="position: relative; border: 1px solid rgba(29, 31, 32, 0.16);">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <iframe src="viewer-exploded.html?embed" title="MX-15 opened into its five service layers — drag to turn it" loading="lazy" style="display: block; width: 100%; aspect-ratio: 1 / 1; border: 0; background: #16222e;"></iframe>
+          </div>
+          <ol style="margin: 0; padding: 0; list-style: none; display: grid; gap: 0;">
+            <sc-for list="{{ layerList }}" as="l" hint-placeholder-count="5">
+              <li style="display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-top: 1px solid rgba(29, 31, 32, 0.12); font-size: 15px; line-height: 1.45;"><span style="font-variant-numeric: tabular-nums; color: rgba(29, 31, 32, 0.45);">{{ l.no }}</span><span>{{ l.name }}</span></li>
+            </sc-for>
+          </ol>
+        </div>
+        <figcaption style="font-size: 14px; line-height: 1.5; color: rgba(29, 31, 32, 0.6);">Drag to turn it; the slider closes the machine up. Five layers, in the order you meet them — every one of them a part you can buy anywhere.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section data-screen-label="The Range" style="background: var(--color-accent-900); color: #f2f2f3;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(64px, 8vw, 104px) 24px; display: grid; justify-items: center; text-align: center; gap: 18px;">
+      <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.06; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">The Range</h2>
+      <p style="font-size: 18px; line-height: 1.5; margin: 0; max-width: 44ch; color: rgba(242, 242, 243, 0.78);">Eleven, fifteen or nineteen litres.</p>
+      <button type="button" onClick="{{ goModels }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 24px; margin-top: 4px; border: 0; border-radius: 0; background: #f2f2f3; color: #1d2d3d; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #ffffff;">Explore</button>
+      <div style="width: 100%; max-width: 1000px; margin: 34px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 3vw, 34px); align-items: end; color: rgba(242, 242, 243, 0.92);">
+        <div style="display: grid; gap: 18px; justify-items: center;">
+          <div style="width: 78%;"><dc-import name="MXIso" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+          <div style="width: 100%; border-top: 1px solid rgba(242, 242, 243, 0.24); padding-top: 12px; font-size: 13px; letter-spacing: 0.04em; color: rgba(242, 242, 243, 0.72);">MX-11 · RTX PRO 4500 · 32 GB</div>
+        </div>
+        <div style="display: grid; gap: 18px; justify-items: center;">
+          <div style="width: 92%;"><dc-import name="MXIso" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+          <div style="width: 100%; border-top: 1px solid rgba(242, 242, 243, 0.24); padding-top: 12px; font-size: 13px; letter-spacing: 0.04em; color: rgba(242, 242, 243, 0.72);">MX-15 · RTX PRO 6000 · 96 GB</div>
+        </div>
+        <div style="display: grid; gap: 18px; justify-items: center;">
+          <div style="width: 100%;"><dc-import name="MXIso" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+          <div style="width: 100%; border-top: 1px solid rgba(242, 242, 243, 0.24); padding-top: 12px; font-size: 13px; letter-spacing: 0.04em; color: rgba(242, 242, 243, 0.72);">MX-19 · RTX PRO 6000 · four DIMM</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="The Metal" style="background: #ffffff; border-top: 1px solid rgba(29, 31, 32, 0.10);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(64px, 8vw, 104px) 24px; display: grid; justify-items: center; text-align: center; gap: 18px;">
+      <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.06; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">The Metal</h2>
+      <p style="font-size: 18px; line-height: 1.5; margin: 0; max-width: 46ch; color: rgba(29, 31, 32, 0.72);">Open at both ends, because the card inside it draws 600 watts.</p>
+      <button type="button" onClick="{{ goMetal }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 24px; margin-top: 4px; border: 1px solid rgba(29, 31, 32, 0.28); border-radius: 0; background: transparent; color: #1d1f20; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: rgba(29, 31, 32, 0.05);">Explore</button>
+      <div class="mx-two" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 32px); width: 100%; max-width: 1080px; margin: 30px 0 0; text-align: left;">
+        <figure style="margin: 0; display: grid; gap: 14px; align-content: start;">
+          <div style="border-radius: 0; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(20px, 3vw, 34px); color: #1d1f20;"><dc-import name="MXDrawing" view="top" notes="off" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+          <figcaption style="font-size: 14px; line-height: 1.5; color: rgba(29, 31, 32, 0.6);">
+            <div style="font-weight: 600; color: rgba(29, 31, 32, 0.82); margin-bottom: 8px;">Plan view</div>
+            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 6px;">
+              <li style="display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 8px;"><span aria-hidden="true">—</span><span>Card draws air in through the glass wall.</span></li>
+              <li style="display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 8px;"><span aria-hidden="true">—</span><span>Exhaust goes straight up and out through the lid.</span></li>
+              <li style="display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 8px;"><span aria-hidden="true">—</span><span>The space above the card is cable clearance, not a fan bay.</span></li>
+            </ul>
+          </figcaption>
+        </figure>
+        <figure style="margin: 0; display: grid; gap: 14px; align-content: start;">
+          <div style="border-radius: 0; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(20px, 3vw, 34px); color: #1d1f20;"><dc-import name="MXDrawing" view="side" notes="off" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+          <figcaption style="font-size: 14px; line-height: 1.5; color: rgba(29, 31, 32, 0.6);">
+            <div style="font-weight: 600; color: rgba(29, 31, 32, 0.82); margin-bottom: 8px;">End panel</div>
+            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 6px;">
+              <li style="display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 8px;"><span aria-hidden="true">—</span><span>3 mm perforation grid across the face.</span></li>
+              <li style="display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 8px;"><span aria-hidden="true">—</span><span>42% open area, not a single slot.</span></li>
+              <li style="display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 8px;"><span aria-hidden="true">—</span><span>The card breathes through the whole wall.</span></li>
+            </ul>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Workloads" style="background: var(--color-accent-900); color: #f2f2f3;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(64px, 8vw, 104px) 24px; display: grid; justify-items: center; text-align: center; gap: 18px;">
+      <h2 style="font-family: var(--font-heading); font-weight: 600; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.06; letter-spacing: 0.02em; text-transform: uppercase; margin: 0;">Workloads</h2>
+      <p style="font-size: 18px; line-height: 1.5; margin: 0; max-width: 46ch; color: rgba(242, 242, 243, 0.78);">Set up for the models you already run.</p>
+      <button type="button" onClick="{{ goWorkloads }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 24px; margin-top: 4px; border: 0; border-radius: 0; background: #f2f2f3; color: #1d2d3d; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #ffffff;">Explore</button>
+      <div class="mx-three" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 48px); width: 100%; max-width: 940px; margin: 34px 0 0; text-align: left;">
+        <div style="display: grid; gap: 8px;">
+          <span style="font-size: 19px; font-weight: 600; letter-spacing: -0.01em;">Runs your work</span>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(242, 242, 243, 0.72);">Tell us the model you want to run. We load it on your exact machine, measure the tokens per second and send you the number before you pay.</p>
+        </div>
+        <div style="display: grid; gap: 8px;">
+          <span style="font-size: 19px; font-weight: 600; letter-spacing: -0.01em;">Ready on arrival</span>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(242, 242, 243, 0.72);">Arrives with drivers, Ollama and a local chat interface on your own network. Plug it in, open a browser, talk to it.<br><br></p>
+        </div>
+        <div style="display: grid; gap: 8px;">
+          <span style="font-size: 19px; font-weight: 600; letter-spacing: -0.01em;">Quiet enough to sit beside</span>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(242, 242, 243, 0.72);">34 dBA under full load. It sits on the desk beside you, not in a cupboard down the hall.<br><br></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isMetal }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Metal" style="background: #ffffff;">
+    <div class="mx-hero" style="max-width: 1240px; margin: 0 auto; padding: clamp(44px, 6vw, 76px) 24px clamp(56px, 7vw, 88px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center;">
+      <div>
+        <a href="#top" onClick="{{ goHome }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; color: rgba(29, 31, 32, 0.55);" style-hover="color: #1d1f20;">‹ Monderax</a>
+        <h1 style="font-size: clamp(34px, 4vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.022em; margin: 18px 0 0;">A machined frame<br>and two open walls</h1>
+        <p style="font-size: 21px; font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin: 22px 0 0;">Fifteen litres. Ninety-six gigabytes. No cupboard required.</p>
+        <p style="font-size: 17px; line-height: 1.6; margin: 24px 0 0; max-width: 46ch; color: rgba(29, 31, 32, 0.72);">The frame is cut from 6082-T6 plate — one piece carrying the board, the card and the cooler. Both end walls are perforated on a 3 mm grid across 42% of their area and the long wall is tempered glass, so a 600-watt card pulls cool air straight through the machine rather than sipping it through a slot. Everything above the card is clearance for its power cable — 20 mm of it, which is why the machine is 246 mm tall and not 226.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+          <button type="button" onClick="{{ goSupport }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border: 1px solid rgba(29, 31, 32, 0.28); border-radius: 0; background: transparent; color: #1d1f20; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: rgba(29, 31, 32, 0.05);">Get in touch</button>
+          <button type="button" onClick="{{ goConfigure }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border: 1px solid #1d1f20; border-radius: 0; background: #1d1f20; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #000000;">{{ ctaLabel }}</button>
+        </div>
+      </div>
+      <div style="border-radius: 0; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(22px, 3vw, 40px); color: #1d1f20;"><dc-import name="MXIso" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid rgba(29, 31, 32, 0.10); background: #ffffff;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) 24px;">
+      <div style="display: grid; justify-items: center; text-align: center; gap: 18px;">
+        <h2 style="font-size: clamp(28px, 3.2vw, 38px); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; margin: 0;">What the metal does.</h2>
+        <p style="font-size: 17px; line-height: 1.6; margin: 0; max-width: 62ch; color: rgba(29, 31, 32, 0.72);">Anodised, not painted, with stainless fasteners and a filtered intake you can rinse in the sink. Every figure below is measured on the machine that ships, not on a prototype.</p>
+      </div>
+
+      <div style="margin: 44px 0 0; border: 1px solid rgba(29, 31, 32, 0.12); border-radius: 0; overflow: hidden;">
+        <div style="display: flex; flex-wrap: wrap; align-items: stretch; border-bottom: 1px solid rgba(29, 31, 32, 0.12); background: #f7f7f8;">
+          <span style="flex: 1; min-width: 18ch; padding: 14px 24px; font-size: 14px; font-weight: 600;">MX-15 — verified machine data</span>
+          <span style="padding: 14px 24px; font-size: 14px; color: rgba(29, 31, 32, 0.6); white-space: nowrap;">Rev D</span>
+          <span style="padding: 14px 24px; font-size: 14px; color: rgba(29, 31, 32, 0.6); white-space: nowrap;">Sheet 01 of 02</span>
+        </div>
+        <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+          <thead>
+            <tr>
+              <th scope="col" style="text-align: left; padding: 12px 24px; font-size: 13px; font-weight: 500; color: rgba(29, 31, 32, 0.55); border-bottom: 1px solid rgba(29, 31, 32, 0.12); width: 8ch;">No.</th>
+              <th scope="col" style="text-align: left; padding: 12px 24px 12px 0; font-size: 13px; font-weight: 500; color: rgba(29, 31, 32, 0.55); border-bottom: 1px solid rgba(29, 31, 32, 0.12);">Property</th>
+              <th scope="col" style="text-align: left; padding: 12px 24px 12px 0; font-size: 13px; font-weight: 500; color: rgba(29, 31, 32, 0.55); border-bottom: 1px solid rgba(29, 31, 32, 0.12);">Value</th>
+              <th scope="col" style="text-align: left; padding: 12px 24px 12px 0; font-size: 13px; font-weight: 500; color: rgba(29, 31, 32, 0.55); border-bottom: 1px solid rgba(29, 31, 32, 0.12);">Remark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 18px 24px; font-size: 14px; color: var(--color-accent-700); border-bottom: 1px solid rgba(29, 31, 32, 0.08);">01</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 16px; border-bottom: 1px solid rgba(29, 31, 32, 0.08);">Panel open area</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; border-bottom: 1px solid rgba(29, 31, 32, 0.08);">42%</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 15px; color: rgba(29, 31, 32, 0.68); border-bottom: 1px solid rgba(29, 31, 32, 0.08);">3 mm holes on a 9 mm grid, both end walls</td>
+            </tr>
+            <tr>
+              <td style="padding: 18px 24px; font-size: 14px; color: var(--color-accent-700); border-bottom: 1px solid rgba(29, 31, 32, 0.08);">02</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 16px; border-bottom: 1px solid rgba(29, 31, 32, 0.08);">Sustained GPU power</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; border-bottom: 1px solid rgba(29, 31, 32, 0.08);">780 W</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 15px; color: rgba(29, 31, 32, 0.68); border-bottom: 1px solid rgba(29, 31, 32, 0.08);">600 W card, 170 W CPU, 12-hour run, no throttle</td>
+            </tr>
+            <tr>
+              <td style="padding: 18px 24px; font-size: 14px; color: var(--color-accent-700); border-bottom: 1px solid rgba(29, 31, 32, 0.08);">03</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 16px; border-bottom: 1px solid rgba(29, 31, 32, 0.08);">Noise at the desk, loaded</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; border-bottom: 1px solid rgba(29, 31, 32, 0.08);">34 dBA</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 15px; color: rgba(29, 31, 32, 0.68); border-bottom: 1px solid rgba(29, 31, 32, 0.08);">Measured at 600 mm, anechoic room</td>
+            </tr>
+            <tr>
+              <td style="padding: 18px 24px; font-size: 14px; color: var(--color-accent-700);">04</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 16px;">Burn-in before dispatch</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap;">72 h</td>
+              <td style="padding: 18px 24px 18px 0; font-size: 15px; color: rgba(29, 31, 32, 0.68);">Log ships with the machine</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mx-three" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); margin: 44px 0 0;">
+        <div>
+          <div style="font-size: 30px; font-weight: 600; letter-spacing: -0.02em;">6082-T6</div>
+          <div style="font-size: 14px; color: rgba(29, 31, 32, 0.6); margin-top: 4px;">Alloy</div>
+        </div>
+        <div>
+          <div style="font-size: 30px; font-weight: 600; letter-spacing: -0.02em;">15.3 L</div>
+          <div style="font-size: 14px; color: rgba(29, 31, 32, 0.6); margin-top: 4px;">Volume</div>
+        </div>
+        <div>
+          <div style="font-size: 30px; font-weight: 600; letter-spacing: -0.02em;">3.4 kg</div>
+          <div style="font-size: 14px; color: rgba(29, 31, 32, 0.6); margin-top: 4px;">Bare chassis</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid rgba(29, 31, 32, 0.10); background: #ffffff;">
+    <div class="mx-two" style="max-width: 1240px; margin: 0 auto; padding: clamp(48px, 6vw, 80px) 24px clamp(64px, 8vw, 104px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 44px);">
+      <figure style="margin: 0; display: grid; gap: 14px; align-content: start;">
+        <div style="border-radius: 0; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(20px, 3vw, 34px); color: #1d1f20;"><dc-import name="MXDrawing" view="front" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+        <figcaption style="font-size: 15px; line-height: 1.5; color: rgba(29, 31, 32, 0.68);">Front elevation, through the glass. A full-length card on a riser with the supply tucked beneath it, drawn as you see it from the desk.</figcaption>
+      </figure>
+      <figure style="margin: 0; display: grid; gap: 14px; align-content: start;">
+        <div style="border-radius: 0; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(20px, 3vw, 34px); color: #1d1f20;"><dc-import name="MXDrawing" view="rear" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+        <figcaption style="font-size: 15px; line-height: 1.5; color: rgba(29, 31, 32, 0.68);">Rear elevation. Board window, card bracket and inlet, every port named. The panels come off by hand; the drawing ships in the box.</figcaption>
+      </figure>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isConfigure }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Configurator" style="background: #ffffff;">
+    <div class="mx-hero" style="max-width: 1240px; margin: 0 auto; padding: clamp(44px, 6vw, 76px) 24px clamp(56px, 7vw, 88px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center;">
+      <div>
+        <a href="#top" onClick="{{ goHome }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; color: rgba(29, 31, 32, 0.55);" style-hover="color: #1d1f20;">‹ Monderax</a>
+        <h1 style="font-size: clamp(34px, 4vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.022em; margin: 18px 0 0;">{{ configHeading }}</h1>
+        <p style="font-size: 21px; font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin: 22px 0 0;">Four decisions. Every one of them a part you could buy yourself.</p>
+        <p style="font-size: 17px; line-height: 1.6; margin: 24px 0 0; max-width: 46ch; color: rgba(29, 31, 32, 0.72);">{{ configIntro }}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+          <button type="button" onClick="{{ goSupport }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border: 1px solid rgba(29, 31, 32, 0.28); border-radius: 0; background: transparent; color: #1d1f20; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: rgba(29, 31, 32, 0.05);">Get in touch</button>
+          <button type="button" onClick="{{ goModels }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border: 1px solid #1d1f20; border-radius: 0; background: #1d1f20; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #000000;">See the range</button>
+        </div>
+      </div>
+      <div style="border-radius: 0; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(24px, 3vw, 40px); color: #1d1f20;"><dc-import name="MXDrawing" view="front" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid rgba(29, 31, 32, 0.10); background: #ffffff;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 88px) 24px clamp(64px, 8vw, 104px);">
+      <div class="mx-config" style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(32px, 4vw, 56px); align-items: start;">
+        <div style="{{ lockStyle }}" aria-hidden="{{ teaser }}">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(29, 31, 32, 0.12); padding-bottom: 10px;">
+              <span style="font-size: 15px; font-weight: 600;">Graphics card</span>
+              <span style="font-size: 14px; color: rgba(29, 31, 32, 0.55);">Required</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 16px;">
+              <sc-for list="{{ gpuOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.pick }}" aria-pressed="{{ opt.selected }}" style="{{ opt.style }}" style-hover="border-color: rgba(29, 31, 32, 0.5);">
+                  <span style="display: block; font-size: 19px; font-weight: 600; letter-spacing: -0.015em;">{{ opt.name }}</span>
+                  <span style="display: block; font-size: 14px; line-height: 1.45; margin-top: 6px; color: rgba(29, 31, 32, 0.68);">{{ opt.note }}</span>
+                  <span style="display: block; font-size: 14px; margin-top: 10px; color: var(--color-accent-700);">{{ opt.delta }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(29, 31, 32, 0.12); padding-bottom: 10px;">
+              <span style="font-size: 15px; font-weight: 600;">System memory</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 16px;">
+              <sc-for list="{{ memOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.pick }}" aria-pressed="{{ opt.selected }}" style="{{ opt.style }}" style-hover="border-color: rgba(29, 31, 32, 0.5);">
+                  <span style="display: block; font-size: 19px; font-weight: 600; letter-spacing: -0.015em;">{{ opt.name }}</span>
+                  <span style="display: block; font-size: 14px; margin-top: 10px; color: var(--color-accent-700);">{{ opt.delta }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(29, 31, 32, 0.12); padding-bottom: 10px;">
+              <span style="font-size: 15px; font-weight: 600;">Storage</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 16px;">
+              <sc-for list="{{ storageOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.pick }}" aria-pressed="{{ opt.selected }}" style="{{ opt.style }}" style-hover="border-color: rgba(29, 31, 32, 0.5);">
+                  <span style="display: block; font-size: 19px; font-weight: 600; letter-spacing: -0.015em;">{{ opt.name }}</span>
+                  <span style="display: block; font-size: 14px; margin-top: 10px; color: var(--color-accent-700);">{{ opt.delta }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(29, 31, 32, 0.12); padding-bottom: 10px;">
+              <span style="font-size: 15px; font-weight: 600;">Chassis finish</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 16px;">
+              <sc-for list="{{ finishOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.pick }}" aria-pressed="{{ opt.selected }}" style="{{ opt.style }}" style-hover="border-color: rgba(29, 31, 32, 0.5);">
+                  <span style="display: block; font-size: 19px; font-weight: 600; letter-spacing: -0.015em;">{{ opt.name }}</span>
+                  <span style="display: block; font-size: 14px; line-height: 1.45; margin-top: 6px; color: rgba(29, 31, 32, 0.68);">{{ opt.note }}</span>
+                  <span style="display: block; font-size: 14px; margin-top: 10px; color: var(--color-accent-700);">{{ opt.delta }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <sc-if value="{{ teaser }}" hint-placeholder-val="{{ true }}">
+          <aside style="position: sticky; top: 88px; border: 1px solid rgba(29, 31, 32, 0.12); border-radius: 0; overflow: hidden;">
+            <div style="padding: 14px 22px; border-bottom: 1px solid rgba(29, 31, 32, 0.12); background: #f7f7f8; font-size: 14px; font-weight: 600;">Waitlist</div>
+            <div style="padding: 22px;">
+              <p style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em;">Coming {{ launchDateText }}</p>
+              <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.55; color: rgba(29, 31, 32, 0.72);">We are not publishing prices or final part numbers until launch. Join the list and you get the build sheet, the burn-in data and an assembly slot the morning the configurator opens.</p>
+              <form onSubmit="{{ onSubscribe }}" style="display: grid; gap: 10px; margin-top: 22px;">
+                <input type="email" required="required" placeholder="you@example.com" aria-label="Email address" style="min-height: 48px; padding: 0 18px; border: 1px solid rgba(29, 31, 32, 0.24); border-radius: 0; background: #ffffff; font-family: inherit; font-size: 15px; color: #1d1f20;">
+                <button type="submit" style="min-height: 48px; border: 1px solid #1d1f20; border-radius: 0; background: #1d1f20; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #000000;">{{ waitlistLabel }}</button>
+              </form>
+            </div>
+            <div style="border-top: 1px solid rgba(29, 31, 32, 0.12); padding: 14px 22px; display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; color: rgba(29, 31, 32, 0.6);">
+              <span>Founding run</span>
+              <span style="font-size: 17px; font-weight: 600; color: #1d1f20;">{{ runNumber }}</span>
+            </div>
+          </aside>
+        </sc-if>
+        <sc-if value="{{ notTeaser }}" hint-placeholder-val="{{ false }}">
+          <aside style="position: sticky; top: 88px; border: 1px solid rgba(29, 31, 32, 0.12); border-radius: 0; overflow: hidden;">
+            <div style="padding: 14px 22px; border-bottom: 1px solid rgba(29, 31, 32, 0.12); background: #f7f7f8; font-size: 14px; font-weight: 600;">Build sheet</div>
+            <div style="padding: 18px 22px; background: #f7f7f8; border-bottom: 1px solid rgba(29, 31, 32, 0.12);"><dc-import name="MXIso" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+            <dl style="margin: 0; padding: 22px; display: grid; grid-template-columns: max-content 1fr; column-gap: 20px; row-gap: 12px; font-size: 15px;">
+              <dt style="font-size: 14px; color: rgba(29, 31, 32, 0.6);">Card</dt>
+              <dd style="margin: 0; text-align: right;">{{ pickedGpu }}</dd>
+              <dt style="font-size: 14px; color: rgba(29, 31, 32, 0.6);">Memory</dt>
+              <dd style="margin: 0; text-align: right;">{{ pickedMem }}</dd>
+              <dt style="font-size: 14px; color: rgba(29, 31, 32, 0.6);">Storage</dt>
+              <dd style="margin: 0; text-align: right;">{{ pickedStorage }}</dd>
+              <dt style="font-size: 14px; color: rgba(29, 31, 32, 0.6);">Finish</dt>
+              <dd style="margin: 0; text-align: right;">{{ pickedFinish }}</dd>
+              <dt style="font-size: 14px; color: rgba(29, 31, 32, 0.6);">Draw</dt>
+              <dd style="margin: 0; text-align: right;">{{ powerText }}</dd>
+            </dl>
+            <div style="padding: 16px 22px; border-top: 1px solid rgba(29, 31, 32, 0.12); display: flex; justify-content: space-between; align-items: baseline;">
+              <span style="font-size: 14px; color: rgba(29, 31, 32, 0.6);">Total, inc. GST</span>
+              <span style="font-size: 30px; font-weight: 600; letter-spacing: -0.02em; font-feature-settings: 'tnum' 1;">{{ priceText }}</span>
+            </div>
+            <div style="padding: 0 22px 22px;">
+              <button type="button" style="width: 100%; min-height: 48px; border: 1px solid #1d1f20; border-radius: 0; background: #1d1f20; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #000000;">Add to build queue</button>
+              <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.5; color: rgba(29, 31, 32, 0.6);">Assembly slot held for 48 hours. Nothing is charged until the burn-in log passes.</p>
+            </div>
+          </aside>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isModels }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Models" style="background: #ffffff;">
+    <div class="mx-hero" style="max-width: 1240px; margin: 0 auto; padding: clamp(44px, 6vw, 76px) 24px clamp(56px, 7vw, 88px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center;">
+      <div>
+        <a href="#top" onClick="{{ goHome }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; color: rgba(29, 31, 32, 0.55);" style-hover="color: #1d1f20;">‹ Monderax</a>
+        <h1 style="font-size: clamp(34px, 4vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.022em; margin: 18px 0 0;">Three machines,<br>one chassis language</h1>
+        <p style="font-size: 21px; font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin: 22px 0 0;">Eleven, fifteen or nineteen litres.</p>
+        <p style="font-size: 17px; line-height: 1.6; margin: 24px 0 0; max-width: 46ch; color: rgba(29, 31, 32, 0.72);">The same frame and the same perforated walls in three volumes, sized to the card inside — RTX PRO 4500, 5000 or 6000 Blackwell. The 6000 is 304.8 mm long and wants 20 mm of cable clearance above it — that is what sets the width and height of the MX-15. Pick the one that holds your model in memory and nothing larger.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+          <button type="button" onClick="{{ goMetal }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border: 1px solid rgba(29, 31, 32, 0.28); border-radius: 0; background: transparent; color: #1d1f20; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: rgba(29, 31, 32, 0.05);">See the metal</button>
+          <button type="button" onClick="{{ goConfigure }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border: 1px solid #1d1f20; border-radius: 0; background: #1d1f20; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #000000;">{{ ctaLabel }}</button>
+        </div>
+      </div>
+      <div style="border-radius: 0; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(22px, 3vw, 36px); color: #1d1f20;"><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 1.5vw, 18px); align-items: end;">
+        <div style="width: 76%; justify-self: center;"><dc-import name="MXIso" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+        <div style="width: 90%; justify-self: center;"><dc-import name="MXIso" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+        <div style="width: 100%;"><dc-import name="MXIso" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 1.5vw, 18px); margin-top: 22px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(29, 31, 32, 0.55);"><span style="text-align: center;">10.8 L</span><span style="text-align: center;">15.3 L</span><span style="text-align: center;">19.0 L</span></div></div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid rgba(29, 31, 32, 0.10); background: #ffffff;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) 24px clamp(64px, 8vw, 104px);">
+      <div style="display: grid; justify-items: center; text-align: center; gap: 18px;">
+        <h2 style="font-size: clamp(28px, 3.2vw, 38px); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; margin: 0;">The range.</h2>
+        <p style="font-size: 17px; line-height: 1.6; margin: 0; max-width: 62ch; color: rgba(29, 31, 32, 0.72);">Every machine ships with its burn-in log, its dimensioned drawing and a build sheet naming every part by revision. Swapping the card yourself in two years is not a warranty event.</p>
+      </div>
+      <div class="mx-three" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 32px); margin: 44px 0 0;">
+        <article style="border: 1px solid rgba(29, 31, 32, 0.12); border-radius: 0; padding: 26px; display: flex; flex-direction: column;">
+          <span style="font-size: 14px; font-weight: 500; color: var(--color-accent-700);">MX-11 · 10.8 litre</span>
+          <h3 style="font-size: 24px; font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; margin: 12px 0 0;">RTX PRO 4500</h3>
+          <p style="font-size: 15px; line-height: 1.55; margin: 12px 0 0; color: rgba(29, 31, 32, 0.72);">32 GB of GDDR7 with ECC on a Ryzen 9 9950X. The 4500 is 267 mm long, so the whole machine comes in at eleven litres. Runs a 32B model at 4-bit and fits under a monitor arm.</p>
+          <ul style="list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 10px; font-size: 15px;">
+            <li style="display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(29, 31, 32, 0.08); padding-bottom: 10px;"><span style="color: rgba(29, 31, 32, 0.6);">VRAM · RAM</span><span>32 GB · 64 GB</span></li>
+            <li style="display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(29, 31, 32, 0.08); padding-bottom: 10px;"><span style="color: rgba(29, 31, 32, 0.6);">Sustained</span><span>380 W</span></li>
+            <li style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: rgba(29, 31, 32, 0.6);">Size</span><span>308 × 216 × 163</span></li>
+          </ul>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: auto; border-top: 1px solid rgba(29, 31, 32, 0.12); padding-top: 18px; margin-top: 26px;">
+            <span style="{{ priceStyle }}">{{ price120 }}</span>
+            <a href="#top" onClick="{{ goConfigure }}" style="font-size: 15px; font-weight: 500; color: var(--color-accent-700);">Configure →</a>
+          </div>
+        </article>
+        <article style="border: 1px solid rgba(29, 31, 32, 0.12); border-radius: 0; padding: 26px; display: flex; flex-direction: column;">
+          <span style="font-size: 14px; font-weight: 500; color: var(--color-accent-700);">MX-15 · 15.3 litre</span>
+          <h3 style="font-size: 24px; font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; margin: 12px 0 0;">RTX PRO 6000</h3>
+          <p style="font-size: 15px; line-height: 1.55; margin: 12px 0 0; color: rgba(29, 31, 32, 0.72);">96 GB of GDDR7 with ECC, flow-through, exhausting through an open lid. Holds a 120B-class model resident and answers all night. The one most people buy.</p>
+          <ul style="list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 10px; font-size: 15px;">
+            <li style="display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(29, 31, 32, 0.08); padding-bottom: 10px;"><span style="color: rgba(29, 31, 32, 0.6);">VRAM · RAM</span><span>96 GB · 96 GB</span></li>
+            <li style="display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(29, 31, 32, 0.08); padding-bottom: 10px;"><span style="color: rgba(29, 31, 32, 0.6);">Sustained</span><span>780 W</span></li>
+            <li style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: rgba(29, 31, 32, 0.6);">Size</span><span>344 × 246 × 181</span></li>
+          </ul>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid rgba(29, 31, 32, 0.12); padding-top: 18px; margin-top: 26px;">
+            <span style="{{ priceStyle }}">{{ price240 }}</span>
+            <a href="#top" onClick="{{ goConfigure }}" style="font-size: 15px; font-weight: 500; color: var(--color-accent-700);">Configure →</a>
+          </div>
+        </article>
+        <article style="border: 1px solid rgba(29, 31, 32, 0.12); border-radius: 0; padding: 26px; display: flex; flex-direction: column;">
+          <span style="font-size: 14px; font-weight: 500; color: var(--color-accent-700);">MX-19 · 19.0 litre</span>
+          <h3 style="font-size: 24px; font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; margin: 12px 0 0;">RTX PRO 6000 · four DIMM</h3>
+          <p style="font-size: 15px; line-height: 1.55; margin: 12px 0 0; color: rgba(29, 31, 32, 0.72);">The same 96 GB card on a micro-ATX board — four memory slots, a second full-length slot, and a full-height Noctua NH-U9S where there is finally room for one.</p>
+          <ul style="list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 10px; font-size: 15px;">
+            <li style="display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(29, 31, 32, 0.08); padding-bottom: 10px;"><span style="color: rgba(29, 31, 32, 0.6);">VRAM · RAM</span><span>96 GB · 192 GB</span></li>
+            <li style="display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(29, 31, 32, 0.08); padding-bottom: 10px;"><span style="color: rgba(29, 31, 32, 0.6);">Sustained</span><span>980 W</span></li>
+            <li style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: rgba(29, 31, 32, 0.6);">Size</span><span>380 × 250 × 200</span></li>
+          </ul>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid rgba(29, 31, 32, 0.12); padding-top: 18px; margin-top: 26px;">
+            <span style="{{ priceStyle }}">{{ price480 }}</span>
+            <a href="#top" onClick="{{ goConfigure }}" style="font-size: 15px; font-weight: 500; color: var(--color-accent-700);">Configure →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isWorkloads }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Workloads" style="background: #ffffff;">
+    <div class="mx-hero" style="max-width: 1240px; margin: 0 auto; padding: clamp(44px, 6vw, 76px) 24px clamp(56px, 7vw, 88px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center;">
+      <div>
+        <a href="#top" onClick="{{ goHome }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; color: rgba(29, 31, 32, 0.55);" style-hover="color: #1d1f20;">‹ Monderax</a>
+        <h1 style="font-size: clamp(34px, 4vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.022em; margin: 18px 0 0;">Set up for the<br>models you run</h1>
+        <p style="font-size: 21px; font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin: 22px 0 0;">Measured. Logged. Shipped.</p>
+        <p style="font-size: 17px; line-height: 1.6; margin: 24px 0 0; max-width: 46ch; color: rgba(29, 31, 32, 0.72);">Name the model you want to run at home — Llama, Qwen, DeepSeek, gpt-oss. We load it on the exact machine you specified, measure the tokens per second and put the number in the build sheet before you pay.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+          <button type="button" onClick="{{ goSupport }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border: 1px solid rgba(29, 31, 32, 0.28); border-radius: 0; background: transparent; color: #1d1f20; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: rgba(29, 31, 32, 0.05);">Send us a job</button>
+          <button type="button" onClick="{{ goConfigure }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border: 1px solid #1d1f20; border-radius: 0; background: #1d1f20; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #000000;">{{ ctaLabel }}</button>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(24px, 3vw, 40px); align-items: center; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(20px, 3vw, 32px); color: #1d1f20;" class="mx-exploded">
+          <div class="blueprint" style="position: relative; border: 1px solid rgba(29, 31, 32, 0.16);">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <iframe src="viewer-exploded.html?embed" title="MX-15 opened into its five service layers — drag to turn it" loading="lazy" style="display: block; width: 100%; aspect-ratio: 4 / 5; border: 0; background: #16222e;"></iframe>
+          </div>
+          <ol style="margin: 0; padding: 0; list-style: none; display: grid; gap: 0;">
+            <sc-for list="{{ layerList }}" as="l" hint-placeholder-count="5">
+              <li style="display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-top: 1px solid rgba(29, 31, 32, 0.12); font-size: 15px; line-height: 1.45;"><span style="font-variant-numeric: tabular-nums; color: rgba(29, 31, 32, 0.45);">{{ l.no }}</span><span>{{ l.name }}</span></li>
+            </sc-for>
+          </ol>
+        </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid rgba(29, 31, 32, 0.10); background: #ffffff;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) 24px;">
+      <div style="display: grid; justify-items: center; text-align: center; gap: 18px;">
+        <h2 style="font-size: clamp(28px, 3.2vw, 38px); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; margin: 0;">Choose your workflow.</h2>
+        <p style="font-size: 17px; line-height: 1.6; margin: 0; max-width: 62ch; color: rgba(29, 31, 32, 0.72);">Tell us how you like to work and the machine arrives with it installed, pinned and burned in — not a fresh Ubuntu and a link to a wiki.</p>
+      </div>
+
+      <div style="margin: 40px auto 0; max-width: 900px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 8px; border-bottom: 1px solid rgba(29, 31, 32, 0.12);">
+        <sc-for list="{{ workflows }}" as="wf" hint-placeholder-count="5">
+          <button type="button" onClick="{{ wf.pick }}" aria-pressed="{{ wf.selected }}" style="{{ wf.style }}">{{ wf.name }}</button>
+        </sc-for>
+      </div>
+      <p style="margin: 28px auto 0; max-width: 62ch; text-align: center; font-size: 17px; line-height: 1.6; color: rgba(29, 31, 32, 0.72);">{{ workflowBody }}</p>
+
+      <div class="mx-three" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 32px); margin: 52px 0 0;">
+        <div style="border: 1px solid rgba(29, 31, 32, 0.12); border-radius: 0; padding: 26px;">
+          <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0;">Your model, measured</h3>
+          <p style="font-size: 15px; line-height: 1.55; margin: 14px 0 0; color: rgba(29, 31, 32, 0.72);">Tokens per second at your context length, on your configuration, written into the build sheet before you pay for it.</p>
+        </div>
+        <div style="border: 1px solid rgba(29, 31, 32, 0.12); border-radius: 0; padding: 26px;">
+          <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0;">Open by design</h3>
+          <p style="font-size: 15px; line-height: 1.55; margin: 14px 0 0; color: rgba(29, 31, 32, 0.72);">Mini-ITX, SFX-L, a standard card on a standard riser. Nothing inside is ours alone, so nothing inside is ours to hold you to.</p>
+        </div>
+        <div style="border: 1px solid rgba(29, 31, 32, 0.12); border-radius: 0; padding: 26px;">
+          <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0;">Ready on arrival</h3>
+          <p style="font-size: 15px; line-height: 1.55; margin: 14px 0 0; color: rgba(29, 31, 32, 0.72);">Drivers, a model server and a chat interface on your own network, pinned to versions tested together. Plug in, open a browser, ask it something.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid rgba(29, 31, 32, 0.10); background: #ffffff;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) 24px clamp(64px, 8vw, 104px);">
+      <figure style="margin: 0; max-width: 44ch;">
+        <blockquote style="font-size: clamp(24px, 2.6vw, 32px); font-weight: 500; line-height: 1.3; letter-spacing: -0.02em; margin: 0;">“It replaced my API bill and it is quieter than the fridge. I forget it is running until I put a hand on the lid.”</blockquote>
+        <figcaption style="font-size: 15px; margin: 28px 0 0; color: rgba(29, 31, 32, 0.6);">W. Tanuwijaya — MX-15 owner, Singapore</figcaption>
+      </figure>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isSupport }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Support" style="background: #ffffff;">
+    <div class="mx-hero" style="max-width: 1240px; margin: 0 auto; padding: clamp(44px, 6vw, 76px) 24px clamp(56px, 7vw, 88px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center;">
+      <div>
+        <a href="#top" onClick="{{ goHome }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; color: rgba(29, 31, 32, 0.55);" style-hover="color: #1d1f20;">‹ Monderax</a>
+        <h1 style="font-size: clamp(34px, 4vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.022em; margin: 18px 0 0;">Shop notes,<br>monthly</h1>
+        <p style="font-size: 21px; font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; margin: 22px 0 0;">Thermal results. Part revisions. What we learned.</p>
+        <p style="font-size: 17px; line-height: 1.6; margin: 24px 0 0; max-width: 46ch; color: rgba(29, 31, 32, 0.72);">One email a month from the people cutting the parts — thermal results, part revisions, what broke. No launch countdowns, no discount codes.</p>
+        <form onSubmit="{{ onSubscribe }}" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch; max-width: 480px; margin-top: 32px;">
+          <input type="email" required="required" placeholder="you@example.com" aria-label="Email address" style="flex: 1; min-width: 220px; min-height: 48px; padding: 0 20px; border: 1px solid rgba(29, 31, 32, 0.24); border-radius: 0; background: #ffffff; font-family: inherit; font-size: 15px; color: #1d1f20;">
+          <button type="submit" style="min-height: 48px; padding: 0 26px; border: 1px solid #1d1f20; border-radius: 0; background: #1d1f20; color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 500; white-space: nowrap; cursor: pointer;" style-hover="background: #000000;">{{ subscribeLabel }}</button>
+        </form>
+      </div>
+      <div style="border-radius: 0; background: #f7f7f8; border: 1px solid rgba(29, 31, 32, 0.12); padding: clamp(24px, 3vw, 40px); color: #1d1f20;"><dc-import name="MXDrawing" view="rear" hint-size="100%,auto" style="width: 100%;"></dc-import></div>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid rgba(29, 31, 32, 0.10); background: #ffffff;">
+    <div class="mx-three" style="max-width: 1240px; margin: 0 auto; padding: clamp(48px, 6vw, 80px) 24px clamp(64px, 8vw, 104px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 44px);">
+      <div>
+        <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0;">Warranty</h3>
+        <p style="font-size: 15px; line-height: 1.55; margin: 12px 0 0; color: rgba(29, 31, 32, 0.72);">Three years on the machine, ten on the chassis. Opening it to add memory or swap a card does not void anything.</p>
+      </div>
+      <div>
+        <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0;">Service drawings</h3>
+        <p style="font-size: 15px; line-height: 1.55; margin: 12px 0 0; color: rgba(29, 31, 32, 0.72);">Every machine ships with its own dimensioned drawing, torque table and burn-in log. Replacements are a PDF away.</p>
+      </div>
+      <div>
+        <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0;">Talk to us</h3>
+        <p style="font-size: 15px; line-height: 1.55; margin: 12px 0 0; color: rgba(29, 31, 32, 0.72);">Support is the workshop, not a queue. Mail arrives at the bench where the machines are assembled, in Singapore.</p>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<footer style="border-top: 1px solid rgba(29, 31, 32, 0.10); background: #ffffff;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 44px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 32px; font-size: 15px;">
+    <div>
+      <span style="font-family: var(--font-heading); font-weight: 600; font-size: 24px; line-height: 1; text-transform: uppercase; letter-spacing: 0; display: inline-flex; align-items: center; gap: 0.08em; text-box: trim-both cap alphabetic;"><span style="display: block; text-box: trim-both cap alphabetic;">M</span><img src="assets/monderax-mark-lockup.png" alt="o" style="display: block; align-self: center; height: 0.72em; width: auto; flex: 0 0 auto;"><span style="display: block; text-box: trim-both cap alphabetic;">N</span><span style="display: block; text-box: trim-both cap alphabetic;">D</span><span style="display: block; text-box: trim-both cap alphabetic;">E</span><span style="display: block; text-box: trim-both cap alphabetic;">R</span><span style="display: block; text-box: trim-both cap alphabetic;">A</span><span style="display: block; text-box: trim-both cap alphabetic;">X</span></span>
+      <p style="margin: 14px 0 0; color: rgba(29, 31, 32, 0.65); line-height: 1.55;">AI workstations designed, assembled and supported in Singapore. Shipped across APAC.</p>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 600;">Machines</div>
+      <div style="display: grid; gap: 8px; margin-top: 14px; color: rgba(29, 31, 32, 0.7);">
+        <a href="#top" onClick="{{ goConfigure }}">Configurator</a>
+        <a href="#top" onClick="{{ goModels }}">The range</a>
+        <a href="#top" onClick="{{ goMetal }}">The metal</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 600;">Support</div>
+      <div style="display: grid; gap: 8px; margin-top: 14px; color: rgba(29, 31, 32, 0.7);">
+        <a href="#top" onClick="{{ goSupport }}">Contact</a>
+        <a href="#top" onClick="{{ goSupport }}">Warranty</a>
+        <a href="#top" onClick="{{ goSupport }}">Service drawings</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 600;">Shop</div>
+      <div style="display: grid; gap: 8px; margin-top: 14px; color: rgba(29, 31, 32, 0.7);">
+        <a href="#top" onClick="{{ goWorkloads }}">Benchmarking</a>
+        <a href="#top" onClick="{{ goSupport }}">Trade-in</a>
+        <a href="#top" onClick="{{ goSupport }}">Press</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px 40px; font-size: 14px; color: rgba(29, 31, 32, 0.5);">© 2026 Monderax Pte. Ltd. · 24 Pioneer Sector 2, Singapore 628377 — a fictional brand built for this design exercise.</div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;teaser&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Launch&quot;},&quot;launchDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Q1 2027&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Launch&quot;}}">
+class Component extends DCLogic {
+  state = { gpu: 1, mem: 1, storage: 1, finish: 0, subscribed: false, page: "home", wf: 0 };
+
+  go(page) {
+    return (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      this.setState({ page });
+      if (typeof window !== "undefined") window.scrollTo({ top: 0 });
+    };
+  }
+
+  gpus() {
+    return [
+      { name: "RTX PRO 4500", note: "32 GB GDDR7 ECC — 32B at 4-bit, images", price: 0, watts: 380 },
+      { name: "RTX PRO 5000", note: "48 GB GDDR7 ECC — 70B at 4-bit, all day", price: 4200, watts: 480 },
+      { name: "RTX PRO 6000", note: "96 GB GDDR7 ECC — 120B-class resident", price: 12800, watts: 780 }
+    ];
+  }
+  mems() {
+    return [{ name: "64 GB", price: 0 }, { name: "96 GB", price: 640 }, { name: "128 GB", price: 1180 }];
+  }
+  storages() {
+    return [{ name: "4 TB", price: 0 }, { name: "8 TB", price: 930 }, { name: "16 TB", price: 2480 }];
+  }
+  finishes() {
+    return [
+      { name: "Raw mill", note: "As cut, clear-coated", price: 0, key: "raw" },
+      { name: "Silver", note: "Bead blast, type II anodise", price: 260, key: "steel" },
+      { name: "Graphite", note: "Hard anodise, type III", price: 480, key: "graphite" }
+    ];
+  }
+  wfs() {
+    return [
+      { name: "Ollama", body: "Models pulled, quantised and running as a service from boot. Everything on your network can reach it — your laptop, your phone, the machine in the next room — and nothing leaves the house." },
+      { name: "Chat interface", body: "A local web chat on your own address, set up with the models you asked for. It is the thing most owners use every day, so it is installed and working before the machine is boxed." },
+      { name: "vLLM", body: "For when you are building something: an OpenAI-shaped endpoint on your own hardware. We send tokens per second at your context length, measured on the configuration you chose." },
+      { name: "ComfyUI", body: "Image and video pipelines with the models you name already downloaded. The card is flow-through and the lid is open metal, so it holds its clocks through a long batch without a fan curve to babysit." },
+      { name: "Fine-tuning", body: "LoRA training on your own documents, with the toolchain installed and a worked example on your data. No cloud credits, no upload, no queue." }
+    ];
+  }
+
+  optStyle(selected) {
+    return {
+      textAlign: "left",
+      cursor: "pointer",
+      font: "inherit",
+      color: "inherit",
+      padding: "18px",
+      minHeight: "44px",
+      borderRadius: "16px",
+      border: selected ? "1px solid #1d1f20" : "1px solid rgba(29,31,32,0.16)",
+      background: selected ? "rgba(29,31,32,0.04)" : "transparent",
+      boxShadow: selected ? "inset 0 0 0 1px #1d1f20" : "none"
+    };
+  }
+
+  tabStyle(selected) {
+    return {
+      font: "inherit",
+      fontSize: "15px",
+      fontWeight: 500,
+      cursor: "pointer",
+      background: "transparent",
+      border: "0",
+      borderBottom: selected ? "2px solid #1d1f20" : "2px solid transparent",
+      color: selected ? "#1d1f20" : "rgba(29,31,32,0.5)",
+      padding: "10px 16px 12px",
+      marginBottom: "-1px"
+    };
+  }
+
+  build(list, key) {
+    return list.map((o, i) => ({
+      name: o.name,
+      note: o.note || "",
+      delta: (this.props.teaser ?? true)
+        ? (o.price === 0 ? "Included" : "Price at launch")
+        : (o.price === 0 ? "Included" : "+ S$" + o.price.toLocaleString("en-SG")),
+      selected: this.state[key] === i,
+      style: this.optStyle(this.state[key] === i),
+      pick: () => this.setState({ [key]: i })
+    }));
+  }
+
+  // the five service layers, in the order you meet them opening the machine
+  layerList = [
+    { no: "01", name: "Base and supply — Corsair SF1000L, 1000 W SFX-L" },
+    { no: "02", name: "ASUS ROG Strix X870-I with Ryzen 9 9950X" },
+    { no: "03", name: "NVIDIA RTX PRO 6000 Blackwell, 96 GB — twin-fan, flow-through" },
+    { no: "04", name: "Noctua NH-L12S over the processor, 70 mm" },
+    { no: "05", name: "Top panel — perforated, magnet-held" }
+  ];
+
+  renderVals() {
+    const teaser = this.props.teaser ?? true;
+    const launchDateText = this.props.launchDate ?? "Q1 2027";
+    const g = this.gpus()[this.state.gpu];
+    const m = this.mems()[this.state.mem];
+    const s = this.storages()[this.state.storage];
+    const f = this.finishes()[this.state.finish];
+    const total = 6000 + g.price + m.price + s.price + f.price;
+    const page = this.state.page;
+    const cur = (p) => (page === p ? "page" : undefined);
+    const wfList = this.wfs();
+    return {
+      layerList: this.layerList,
+      isHome: page === "home",
+      isConfigure: page === "configure",
+      isMetal: page === "metal",
+      isModels: page === "models",
+      isWorkloads: page === "workloads",
+      isSupport: page === "support",
+      curConfigure: cur("configure"),
+      curMetal: cur("metal"),
+      curModels: cur("models"),
+      curWorkloads: cur("workloads"),
+      curSupport: cur("support"),
+      goHome: this.go("home"),
+      goConfigure: this.go("configure"),
+      goMetal: this.go("metal"),
+      goModels: this.go("models"),
+      goWorkloads: this.go("workloads"),
+      goSupport: this.go("support"),
+      teaser,
+      notTeaser: !teaser,
+      launchDateText,
+      price120: teaser ? "Price at launch" : "S$6,000",
+      price240: teaser ? "Price at launch" : "S$10,800",
+      price480: teaser ? "Price at launch" : "S$20,500",
+      priceStyle: teaser
+        ? { fontSize: "14px", fontWeight: 500, color: "rgba(29,31,32,0.6)", whiteSpace: "nowrap" }
+        : { fontSize: "24px", fontWeight: 600, letterSpacing: "-0.02em", whiteSpace: "nowrap" },
+      runNumber: "50 machines",
+      runText: "Founding run · 50 numbered machines",
+      ctaLabel: teaser ? "Join the waitlist" : "Configure a machine",
+      waitlistLabel: this.state.subscribed ? "You're on the list" : "Join the waitlist",
+      configHeading: teaser ? "The configurator, sealed" : "Specify your machine",
+      configIntro: teaser
+        ? "Locked until launch, but this is the whole options list — the prices behind it are the only thing we are holding back."
+        : "Every combination is thermally validated in this chassis. If a part cannot hold its clocks at 34 dBA, it is not on the list.",
+      lockStyle: teaser
+        ? { display: "grid", gap: "36px", opacity: 0.45, pointerEvents: "none", filter: "grayscale(0.4)" }
+        : { display: "grid", gap: "36px" },
+      gpuOptions: this.build(this.gpus(), "gpu"),
+      memOptions: this.build(this.mems(), "mem"),
+      storageOptions: this.build(this.storages(), "storage"),
+      finishOptions: this.build(this.finishes(), "finish"),
+      workflows: wfList.map((w, i) => ({
+        name: w.name,
+        selected: this.state.wf === i,
+        style: this.tabStyle(this.state.wf === i),
+        pick: () => this.setState({ wf: i })
+      })),
+      workflowBody: wfList[this.state.wf].body,
+      pickedGpu: g.name,
+      pickedMem: m.name,
+      pickedStorage: s.name,
+      pickedFinish: f.name,
+      powerText: g.watts + " W sustained",
+      priceText: "S$" + total.toLocaleString("en-SG"),
+      subscribeLabel: this.state.subscribed ? "On the list" : "Subscribe",
+      onSubscribe: (e) => { e.preventDefault(); this.setState({ subscribed: true }); }
+    };
+  }
+}
+
+</script>
+</body>
+</html>
