@@ -47,7 +47,7 @@ echo "==> repointing the site at docs/vendor"
 for f in docs/viewer-case.html docs/viewer-exploded.html; do
   perl -0pi -e "s{https://unpkg\.com/three\@${THREE_VER}/build/}{./vendor/three/build/}g" "$f"
   perl -0pi -e "s{https://unpkg\.com/three\@${THREE_VER}/examples/jsm/}{./vendor/three/addons/}g" "$f"
-  perl -0pi -e 's{,\s*"integrity":\s*\{[^}]*\}}{}s' "$f"
+  perl -0pi -e 's!,\s*"integrity":\s*\{[^}]*\}!!s' "$f"
 done
 
 # the runtime's React/Babel URLs, and their SRI (same bytes, but the attribute is
