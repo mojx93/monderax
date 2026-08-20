@@ -1,0 +1,6 @@
+name = "monderax"
+compatibility_date = "2026-08-21"
+
+[assets]
+directory = "./docs"
+not_found_handling = "404-page"
