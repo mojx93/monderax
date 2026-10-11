@@ -542,7 +542,7 @@
     <div style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) 24px clamp(64px, 8vw, 104px);">
       <figure style="margin: 0; max-width: 44ch;">
         <blockquote style="font-size: clamp(24px, 2.6vw, 32px); font-weight: 500; line-height: 1.3; letter-spacing: -0.02em; margin: 0;">“It replaced my API bill and it is quieter than the fridge. I forget it is running until I put a hand on the lid.”</blockquote>
-        <figcaption style="font-size: 15px; margin: 28px 0 0; color: rgba(29, 31, 32, 0.6);">W. Tanuwijaya — MX-15 owner, Singapore</figcaption>
+        <figcaption style="font-size: 15px; margin: 28px 0 0; color: rgba(29, 31, 32, 0.6);">W. Tanuwijaya — MX-15 owner</figcaption>
       </figure>
     </div>
   </section>
@@ -577,7 +577,8 @@
       </div>
       <div>
         <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin: 0;">Talk to us</h3>
-        <p style="font-size: 15px; line-height: 1.55; margin: 12px 0 0; color: rgba(29, 31, 32, 0.72);">Support is the workshop, not a queue. Mail arrives at the bench where the machines are assembled, in Singapore.</p>
+        <p style="font-size: 15px; line-height: 1.55; margin: 12px 0 0; color: rgba(29, 31, 32, 0.72);">Support is the workshop, not a queue. Mail arrives at the bench where the machines are assembled, in the USA.</p>
+        <a href="mailto:enquiry@monderax.com" style="display: inline-block; margin-top: 14px; font-size: 17px; font-weight: 600; color: #1d1f20; text-decoration: underline; text-underline-offset: 4px;">enquiry@monderax.com</a>
       </div>
     </div>
   </section>
@@ -587,7 +588,7 @@
   <div style="max-width: 1240px; margin: 0 auto; padding: 44px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 32px; font-size: 15px;">
     <div>
       <span style="font-family: var(--font-heading); font-weight: 600; font-size: 24px; line-height: 1; text-transform: uppercase; letter-spacing: 0; display: inline-flex; align-items: center; gap: 0.08em; text-box: trim-both cap alphabetic;"><span style="display: block; text-box: trim-both cap alphabetic;">M</span><img src="assets/monderax-mark-lockup.png" alt="o" style="display: block; align-self: center; height: 0.72em; width: auto; flex: 0 0 auto;"><span style="display: block; text-box: trim-both cap alphabetic;">N</span><span style="display: block; text-box: trim-both cap alphabetic;">D</span><span style="display: block; text-box: trim-both cap alphabetic;">E</span><span style="display: block; text-box: trim-both cap alphabetic;">R</span><span style="display: block; text-box: trim-both cap alphabetic;">A</span><span style="display: block; text-box: trim-both cap alphabetic;">X</span></span>
-      <p style="margin: 14px 0 0; color: rgba(29, 31, 32, 0.65); line-height: 1.55;">AI workstations designed, assembled and supported in Singapore. Shipped across APAC.</p>
+      <p style="margin: 14px 0 0; color: rgba(29, 31, 32, 0.65); line-height: 1.55;">AI workstations designed and assembled in the USA. Shipped worldwide.</p>
     </div>
     <div>
       <div style="font-size: 14px; font-weight: 600;">Machines</div>
@@ -600,7 +601,7 @@
     <div>
       <div style="font-size: 14px; font-weight: 600;">Support</div>
       <div style="display: grid; gap: 8px; margin-top: 14px; color: rgba(29, 31, 32, 0.7);">
-        <a href="#top" onClick="{{ goSupport }}">Contact</a>
+        <a href="mailto:enquiry@monderax.com">enquiry@monderax.com</a>
         <a href="#top" onClick="{{ goSupport }}">Warranty</a>
         <a href="#top" onClick="{{ goSupport }}">Service drawings</a>
       </div>
@@ -614,7 +615,7 @@
       </div>
     </div>
   </div>
-  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px 40px; font-size: 14px; color: rgba(29, 31, 32, 0.5);">© 2026 Monderax Pte. Ltd. · 24 Pioneer Sector 2, Singapore 628377 — a fictional brand built for this design exercise.</div>
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px 40px; font-size: 14px; color: rgba(29, 31, 32, 0.5);">© 2026 Monderax</div>
 </footer>
 
 </x-dc>
@@ -751,8 +752,8 @@ class Component extends DCLogic {
       priceStyle: teaser
         ? { fontSize: "14px", fontWeight: 500, color: "rgba(29,31,32,0.6)", whiteSpace: "nowrap" }
         : { fontSize: "24px", fontWeight: 600, letterSpacing: "-0.02em", whiteSpace: "nowrap" },
-      runNumber: "50 machines",
-      runText: "Founding run · 50 numbered machines",
+      runNumber: "~200 machines",
+      runText: "Founding run · ~200 numbered machines",
       ctaLabel: teaser ? "Join the waitlist" : "Configure a machine",
       waitlistLabel: this.state.subscribed ? "You're on the list" : "Join the waitlist",
       configHeading: teaser ? "The configurator, sealed" : "Specify your machine",
